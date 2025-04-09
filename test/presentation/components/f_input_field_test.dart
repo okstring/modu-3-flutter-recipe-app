@@ -15,7 +15,6 @@ void main() {
       placeHolder: placeHolder,
       value: value,
       onValueChange: onValueChange,
-      key: textFieldKey,
       textFieldKey: textFieldKey,
     );
 
@@ -44,7 +43,7 @@ void main() {
     ) async {
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: fInputField)));
 
-      final Finder inputDecoratedBox = find.byWidgetPredicate((widget) {
+      final Finder isCorrectBorderFinder = find.byWidgetPredicate((widget) {
         if (widget is InputDecorator) {
           final InputDecoration decoration = widget.decoration;
 
@@ -60,7 +59,7 @@ void main() {
         return false;
       });
 
-      expect(inputDecoratedBox, findsOneWidget);
+      expect(isCorrectBorderFinder, findsOneWidget);
     });
   });
 }

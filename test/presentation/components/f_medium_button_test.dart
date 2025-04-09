@@ -8,25 +8,31 @@ void main() {
       const text = 'Hello';
       voidCallback() {}
 
-      await tester.pumpWidget(MaterialApp(
-          home: FMediumButton(text: text, voidCallback: voidCallback)
-      ));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: FMediumButton(text: text, voidCallback: voidCallback),
+        ),
+      );
 
       final Finder textFinder = find.text(text);
 
       expect(textFinder, findsOneWidget);
     });
 
-    testWidgets('FMediumButton should trigger onTap event when clicked', (WidgetTester tester) async {
+    testWidgets('FMediumButton should trigger onTap event when clicked', (
+      WidgetTester tester,
+    ) async {
       int count = 0;
       const text = 'Hello';
       voidCallback() {
         count++;
       }
 
-      await tester.pumpWidget(MaterialApp(
-          home: FMediumButton(text: text, voidCallback: voidCallback)
-      ));
+      await tester.pumpWidget(
+        MaterialApp(
+          home: FMediumButton(text: text, voidCallback: voidCallback),
+        ),
+      );
 
       final Finder textFinder = find.text(text);
       await tester.tap(textFinder);
