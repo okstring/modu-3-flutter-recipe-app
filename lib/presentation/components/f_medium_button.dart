@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../ui/color_styles.dart';
-import '../../ui/text_styles.dart';
+import 'package:recipe_app/ui/color_styles.dart';
+import 'package:recipe_app/ui/text_styles.dart';
 
 class FMediumButton extends StatelessWidget {
   final String text;

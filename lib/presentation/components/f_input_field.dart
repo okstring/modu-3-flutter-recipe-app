@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/ui/color_styles.dart';
+import 'package:recipe_app/ui/text_styles.dart';
 
-import '../../ui/text_styles.dart';
 
 class FInputField extends StatelessWidget {
   final String label;

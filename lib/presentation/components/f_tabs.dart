@@ -18,6 +18,7 @@ class FTabs extends StatelessWidget {
       width: 375,
       height: 58,
       padding: EdgeInsets.fromLTRB(20, 12, 20, 13),
+      color: AppColors.white,
       child: Row(
         children:
             labelsIndices.map((index) {
