@@ -12,7 +12,7 @@ void main() {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start ,
             spacing: 16,
             children: [
               FBigButton(text: 'Hello', voidCallback: () {

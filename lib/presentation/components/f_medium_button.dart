@@ -39,7 +39,7 @@ class FMediumButton extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(width: 11),
+            const SizedBox(width: 9),
             const Icon(Icons.arrow_right_alt, size: 20, color: AppColors.white),
           ],
         ),
