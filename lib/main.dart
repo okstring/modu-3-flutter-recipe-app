@@ -29,7 +29,7 @@ void main() {
                 FInputField(label: '라벨', placeHolder: '입력해주세요.', value: '', onValueChange: (String value) {
                   print('텍스트가 입력됐습니다. value: $value');
                 }, textFieldKey: Key('textField'),),
-                FTabs(labels: ['one', 'two', 'three'], onValueChange: (int index) {
+                FTabs(labels: ['one', 'two', 'three'], selectedIndex: 0,  onValueChange: (int index) {
                   print('선택된 인덱스: $index');
                 }),
               ],

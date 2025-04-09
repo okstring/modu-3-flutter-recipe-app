@@ -15,7 +15,11 @@ void main() {
         selectedIndex = value;
       }
 
-      final FTabs fTabs = FTabs(labels: labels, onValueChange: onValueChange);
+      final FTabs fTabs = FTabs(
+        labels: labels,
+        onValueChange: onValueChange,
+        selectedIndex: 0,
+      );
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: fTabs)));
 
       await tester.tap(find.text(labels[1]));

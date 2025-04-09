@@ -8,9 +8,9 @@ class FTabs extends StatelessWidget {
   List<int> get labelsIndices => List.generate(labels.length, (index) => index);
 
   final void Function(int) onValueChange;
-  int _selectedIndex = 0;
+  final int selectedIndex;
 
-  FTabs({super.key, required this.labels, required this.onValueChange});
+  const FTabs({super.key, required this.labels, required this.onValueChange, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class FTabs extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color:
-                            _selectedIndex == index
+                            selectedIndex == index
                                 ? AppColors.primary100
                                 : AppColors.white,
                       ),
@@ -42,7 +42,7 @@ class FTabs extends StatelessWidget {
                       child: Text(
                         labels[index],
                         style: TextStyles.smallerTextBold(
-                          color: _selectedIndex == index ? AppColors.white : AppColors.primary80,
+                          color: selectedIndex == index ? AppColors.white : AppColors.primary80,
                         ),
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
