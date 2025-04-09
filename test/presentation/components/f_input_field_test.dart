@@ -31,11 +31,15 @@ void main() {
     testWidgets('should display correct placeholder text', (
       WidgetTester tester,
     ) async {
+
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: fInputField)));
 
-      final Finder placeHolderFinder = find.byKey(textFieldKey);
+      final Finder textFieldFinder = find.byKey(textFieldKey);
 
-      expect(placeHolderFinder, findsOneWidget);
+      expect(textFieldFinder, findsOneWidget);
+
+      final TextField textField = tester.widget<TextField>(textFieldFinder);
+      expect(textField.decoration?.hintText, placeHolder);
     });
 
     testWidgets('should have correct border style', (
