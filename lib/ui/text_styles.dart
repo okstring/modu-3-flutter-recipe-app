@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 
 abstract class TextStyles {
+  static const _fontName = 'Poppins';
+
   static TextStyle titleTextRegular({Color color = AppColors.white}) {
     return TextStyle(
       fontSize: 50,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -16,7 +18,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -26,7 +28,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -36,7 +38,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -46,7 +48,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -56,7 +58,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -66,7 +68,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 11,
       fontWeight: FontWeight.normal,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -77,7 +79,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 50,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -87,7 +89,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -97,7 +99,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -107,7 +109,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -117,7 +119,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -127,7 +129,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
@@ -137,7 +139,7 @@ abstract class TextStyles {
     return TextStyle(
       fontSize: 11,
       fontWeight: FontWeight.bold,
-      fontFamily: 'Poppins',
+      fontFamily: _fontName,
       height: 1.5,
       color: color,
     );
