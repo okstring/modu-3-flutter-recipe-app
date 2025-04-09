@@ -7,6 +7,7 @@ class FInputField extends StatelessWidget {
   final String label;
   final String placeHolder;
   final String value;
+  final Key _textFieldKey;
   final void Function(String) onValueChange;
 
   const FInputField({
@@ -15,7 +16,8 @@ class FInputField extends StatelessWidget {
     required this.placeHolder,
     required this.value,
     required this.onValueChange,
-  });
+    required Key textFieldKey,
+  }): _textFieldKey = textFieldKey;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class FInputField extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(horizontal: 20.0),
               ),
               style: TextStyles.smallerTextRegular(color: AppColors.black),
+              key: _textFieldKey,
             )
             // Container(
             //   child: Text(placeHolder, style: TextStyles.smallerTextRegular(color: AppColors.gray4),),
