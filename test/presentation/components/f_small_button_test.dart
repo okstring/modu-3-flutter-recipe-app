@@ -4,7 +4,7 @@ import 'package:recipe_app/presentation/components/f_small_button.dart';
 
 void main() {
   group('FSmallButton 테스트', () {
-    testWidgets('FSmaillButton text should match', (WidgetTester tester) async {
+    testWidgets('FSmallButton text should match', (WidgetTester tester) async {
       const text = 'Hello';
       voidCallback() {}
 
@@ -17,7 +17,7 @@ void main() {
       expect(textFinder, findsOneWidget);
     });
 
-    testWidgets('FSmaillButton should trigger onTap event when clicked', (
+    testWidgets('FSmallButton should trigger onTap event when clicked', (
       WidgetTester tester,
     ) async {
       int count = 0;

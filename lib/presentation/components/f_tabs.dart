@@ -43,6 +43,8 @@ class FTabs extends StatelessWidget {
                         style: TextStyles.smallerTextBold(
                           color: _selectedIndex == index ? AppColors.white : AppColors.primary80,
                         ),
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
                       ),
                     ),
                   ),

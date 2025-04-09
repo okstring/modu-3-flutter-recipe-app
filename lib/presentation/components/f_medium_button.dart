@@ -30,13 +30,16 @@ class FMediumButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 114,
-              height: 24,
-              child: Text(
-                text,
-                style: TextStyles.normalTextBold(),
-                textAlign: TextAlign.center,
+            Flexible(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: 114),
+                child: Text(
+                  text,
+                  style: TextStyles.normalTextBold(),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                ),
               ),
             ),
             const SizedBox(width: 9),

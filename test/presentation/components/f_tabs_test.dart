@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:recipe_app/presentation/components/f_tabs.dart';
 
 void main() {
-  group('FInputField Test', () {
+  group('FTabs Test', () {
     testWidgets('should correct selected index', (WidgetTester tester) async {
       int selectedIndex = 0;
 

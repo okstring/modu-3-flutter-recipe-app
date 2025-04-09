@@ -25,13 +25,16 @@ class FSmallButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 114,
-              height: 17,
-              child: Text(
-                text,
-                style: TextStyles.smallerTextBold(),
-                textAlign: TextAlign.center,
+            Flexible(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: 114),
+                child: Text(
+                  text,
+                  style: TextStyles.normalTextBold(),
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                ),
               ),
             ),
           ],
