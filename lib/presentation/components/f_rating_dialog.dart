@@ -30,22 +30,34 @@ class _FRatingDialogState extends State<FRatingDialog> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return FSmallButton(text: widget.title, voidCallback: () {
-      showDialog(
-        context: context,
-        barrierColor: Color.fromRGBO(0, 0, 0, 0.3),
-        builder: (BuildContext context) {
-          return StatefulBuilder(
-            builder: (context, setDialogState) {
-              return _buildDialogDetail(setDialogState, context);
-            },
-          );
-        },
-      );
+  void _resetRate() {
+    setState(() {
+      _selectedRating = 0;
     });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return FSmallButton(
+      text: widget.title,
+      voidCallback: () {
+        _resetRate();
+        showDialog(
+          context: context,
+          barrierColor: Color.fromRGBO(0, 0, 0, 0.3),
+          builder: (BuildContext context) {
+            return StatefulBuilder(
+              builder: (context, setDialogState) {
+                return _buildDialogDetail(setDialogState, context);
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
+  // ======== Dialog Detail =========
 
   Widget _buildDialogDetail(StateSetter setDialogState, BuildContext context) {
     return Material(
@@ -109,17 +121,7 @@ class _FRatingDialogState extends State<FRatingDialog> {
   ) {
     return GestureDetector(
       onTap: () {
-        if (_selectedRating == 0) {
-          return;
-        }
-
-        setDialogState(() {
-          widget.onChange(_selectedRating);
-          Timer(Duration(milliseconds: 500), () {
-            _selectedRating = 0;
-          });
-          Navigator.pop(context);
-        });
+        _tapActionButton(setDialogState);
       },
       child: IntrinsicWidth(
         child: ConstrainedBox(
@@ -143,5 +145,16 @@ class _FRatingDialogState extends State<FRatingDialog> {
         ),
       ),
     );
+  }
+
+  void _tapActionButton(void Function(void Function()) setDialogState) {
+    if (_selectedRating == 0) {
+      return;
+    }
+
+    setDialogState(() {
+      widget.onChange(_selectedRating);
+      Navigator.pop(context);
+    });
   }
 }
