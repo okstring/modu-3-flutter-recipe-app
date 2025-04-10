@@ -6,13 +6,15 @@ part 'ingredient.freezed.dart';
 abstract class Ingredient with _$Ingredient {
   const factory Ingredient({
     required String name,
-    required int weight,
+    required String weight,
     required String imageUrl,
   }) = _Ingredient;
 
   static const empty = Ingredient(
     name: '',
-    weight: 0,
+    weight: '',
     imageUrl: '',
   );
+
+  static const dummyImageUrl = 'https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png';
 }
