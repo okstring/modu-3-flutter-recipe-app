@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/presentation/type/f_button_type.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
-class FMediumButton extends StatelessWidget {
+class FMediumButton extends StatefulWidget {
   final String text;
   final VoidCallback voidCallback;
 
@@ -13,17 +14,36 @@ class FMediumButton extends StatelessWidget {
   });
 
   @override
+  State<FMediumButton> createState() => _FMediumButtonState();
+}
+
+class _FMediumButtonState extends State<FMediumButton> {
+  FButtonType _buttonType = FButtonType.defaultState;
+
+  void _changeButtonType(FButtonType buttonType) {
+    setState(() {
+      _buttonType = buttonType;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        voidCallback();
+        widget.voidCallback();
+      },
+      onTapDown: (_) {
+        _changeButtonType(FButtonType.disabledState);
+      },
+      onTapUp: (_) {
+        _changeButtonType(FButtonType.defaultState);
       },
       child: Container(
         width: 243,
         height: 54,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: AppColors.primary100,
+          color: _buttonType == FButtonType.disabledState ? AppColors.gray4 : AppColors.primary100,
         ),
         alignment: Alignment.center,
         child: Row(
@@ -33,7 +53,7 @@ class FMediumButton extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: BoxConstraints(minWidth: 114),
                 child: Text(
-                  text,
+                  widget.text,
                   style: TextStyles.normalTextBold(),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
@@ -42,7 +62,7 @@ class FMediumButton extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 9),
-            const Icon(Icons.arrow_right_alt, size: 20, color: AppColors.white),
+            const Icon(Icons.arrow_forward, size: 20, color: AppColors.white),
           ],
         ),
       ),
