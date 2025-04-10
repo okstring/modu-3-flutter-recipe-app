@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/data/model/ingredient.dart';
 import 'package:recipe_app/data/model/recipe.dart';
+import 'package:recipe_app/presentation/components/f_fillter_button.dart';
 import 'package:recipe_app/presentation/components/f_ingredient_item.dart';
 import 'package:recipe_app/presentation/components/f_rating_button.dart';
 import 'package:recipe_app/presentation/components/f_recipe_card.dart';
@@ -37,8 +38,10 @@ void main() {
                   ),
                 ),
 
-                RatingButton(text: 'star', isSelected: false),
-                RatingButton(text: 'star', isSelected: true),
+                FRatingButton(text: 'star', isSelected: false),
+                FRatingButton(text: 'star', isSelected: true),
+                FFilterButton(text: 'foo', isSelected: false),
+                FFilterButton(text: 'bar', isSelected: true),
               ],
             ),
           ),
