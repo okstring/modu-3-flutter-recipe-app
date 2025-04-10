@@ -6,6 +6,7 @@ import 'package:recipe_app/presentation/components/f_fillter_button.dart';
 import 'package:recipe_app/presentation/components/f_ingredient_item.dart';
 import 'package:recipe_app/presentation/components/f_medium_button.dart';
 import 'package:recipe_app/presentation/components/f_rating_button.dart';
+import 'package:recipe_app/presentation/components/f_rating_dialog.dart';
 import 'package:recipe_app/presentation/components/f_recipe_card.dart';
 import 'package:recipe_app/presentation/components/f_small_button.dart';
 import 'package:recipe_app/ui/color_styles.dart';
@@ -48,6 +49,11 @@ void main() {
                 FBigButton(text: 'Hello', voidCallback: () {}),
                 FMediumButton(text: 'Hello', voidCallback: () {}),
                 FSmallButton(text: 'Hello', voidCallback: () {}),
+                FRatingDialog(
+                  title: 'Rate Recipe',
+                  actionName: 'Send',
+                  onChange: (int value) => print(value),
+                ),
               ],
             ),
           ),
