@@ -26,4 +26,6 @@ abstract class Recipe with _$Recipe {
     makeUserImageUrl: '',
     imageUrl: '',
   );
+
+  static const dummyImageUrl = 'https://cdn.pixabay.com/photo/2017/01/26/02/06/christmas-wallpaper-2009590_1280.jpg';
 }
