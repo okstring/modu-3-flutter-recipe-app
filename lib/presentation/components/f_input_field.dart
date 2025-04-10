@@ -22,7 +22,7 @@ class FInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 315,
+      width: double.infinity,
       height: 81,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -34,7 +34,7 @@ class FInputField extends StatelessWidget {
           ),
 
           Container(
-            width: 315,
+            width: double.infinity,
             height: 55,
             alignment: Alignment.centerLeft,
             child: TextField(

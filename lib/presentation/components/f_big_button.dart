@@ -15,7 +15,7 @@ class FBigButton extends StatelessWidget {
         voidCallback();
       },
       child: Container(
-        width: 315,
+        width: double.infinity,
         height: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),

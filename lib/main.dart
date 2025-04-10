@@ -4,11 +4,13 @@ import 'package:recipe_app/presentation/components/f_input_field.dart';
 import 'package:recipe_app/presentation/components/f_medium_button.dart';
 import 'package:recipe_app/presentation/components/f_small_button.dart';
 import 'package:recipe_app/presentation/components/f_tabs.dart';
+import 'package:recipe_app/ui/color_styles.dart';
 
 void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
+        backgroundColor: AppColors.white,
         body: Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
@@ -29,7 +31,7 @@ void main() {
                 FInputField(label: '라벨', placeHolder: '입력해주세요.', value: '', onValueChange: (String value) {
                   print('텍스트가 입력됐습니다. value: $value');
                 }, textFieldKey: Key('textField'),),
-                FTabs(labels: ['one', 'two', 'three'], selectedIndex: 0,  onValueChange: (int index) {
+                FTabs(labels: ['one', 'two', 'three', 'four'], selectedIndex: 0,  onValueChange: (int index) {
                   print('선택된 인덱스: $index');
                 }),
               ],

@@ -15,7 +15,7 @@ class FTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 375,
+      width: double.infinity,
       height: 58,
       padding: EdgeInsets.fromLTRB(20, 12, 20, 13),
       color: AppColors.white,
