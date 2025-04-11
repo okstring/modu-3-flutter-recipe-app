@@ -34,6 +34,9 @@ class _FBigButtonState extends State<FBigButton> {
       onTapUp: (_) {
         _changeButtonType(FButtonType.defaultState);
       },
+      onTapCancel: () {
+        _changeButtonType(FButtonType.defaultState);
+      },
       child: Container(
         width: double.infinity,
         height: 60,

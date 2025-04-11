@@ -4,12 +4,12 @@ import 'package:recipe_app/ui/color_styles.dart';
 abstract class TextStyles {
   static const _fontName = 'Poppins';
 
-  static TextStyle custom({required double fontSize, required FontWeight fontWeight, required Color color}) {
+  static TextStyle custom({required double fontSize, required FontWeight fontWeight, required Color color, required double height}) {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight,
       fontFamily: _fontName,
-      height: 1.5,
+      height: height,
       color: color,
     );
   }

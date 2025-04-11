@@ -21,7 +21,7 @@ void main() {
     MaterialApp(
       home: Scaffold(
         backgroundColor: AppColors.white,
-        body: SplashScreen(),
+        body: SplashScreen()
       ),
     ),
   );

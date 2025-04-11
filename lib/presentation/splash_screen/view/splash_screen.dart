@@ -39,52 +39,56 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
 
-          Column(
-            children: [
-              const SizedBox(height: 104),
-              Image.asset('assets/images/logo.png', width: 79, height: 79),
-              const SizedBox(height: 14),
-              Text('100K+ Premium Recipe', style: TextStyles.mediumTextBold()),
-              const Spacer(),
-              Text(
-                'Get\nCooking',
-                style: TextStyles.custom(
-                  fontSize: 50,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+          Positioned.fill(
+            child: Column(
+              children: [
+                const SizedBox(height: 104),
+                Image.asset('assets/images/logo.png', width: 79, height: 79),
+                const SizedBox(height: 14),
+                Text('100K+ Premium Recipe', style: TextStyles.mediumTextBold()),
+                const Spacer(),
+                Text(
+                  'Get\nCooking',
+                  textAlign: TextAlign.center,
+                  style: TextStyles.custom(
+                    fontSize: 50,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    height: 1.2
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Simple way to find Tasty Recipe',
-                style: TextStyles.normalTextRegular(),
-              ),
-
-              const SizedBox(height: 64),
-
-              FMediumButton(
-                text: 'Start Cooking',
-                voidCallback: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => SavedRecipesScreen(
-                            savedRecipesViewModel: SavedRecipesViewModel(
-                              recipeRepository: RecipeRepositoryImpl(
-                                recipeDataSource: RecipeDataSourceImpl(),
-                              ),
-                            )..fetchSavedRecipes(),
-                          ),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(height: 84),
-            ],
+            
+                const SizedBox(height: 20),
+            
+                Text(
+                  'Simple way to find Tasty Recipe',
+                  style: TextStyles.normalTextRegular(),
+                ),
+            
+                const SizedBox(height: 64),
+            
+                FMediumButton(
+                  text: 'Start Cooking',
+                  voidCallback: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => SavedRecipesScreen(
+                              savedRecipesViewModel: SavedRecipesViewModel(
+                                recipeRepository: RecipeRepositoryImpl(
+                                  recipeDataSource: RecipeDataSourceImpl(),
+                                ),
+                              )..fetchSavedRecipes(),
+                            ),
+                      ),
+                    );
+                  },
+                ),
+            
+                const SizedBox(height: 84),
+              ],
+            ),
           ),
         ],
       ),

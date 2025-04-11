@@ -34,6 +34,9 @@ class _FSmallButtonState extends State<FSmallButton> {
       onTapUp: (_) {
         _changeButtonType(FButtonType.defaultState);
       },
+      onTapCancel: () {
+        _changeButtonType(FButtonType.defaultState);
+      },
       child: Container(
         width: 174,
         height: 37,

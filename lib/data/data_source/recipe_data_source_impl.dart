@@ -5,7 +5,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
   final List<RecipeDto> _mockRecipes = [
     RecipeDto(
       id: "recipe_001",
-      name: "김치찌개",
+      name: "Traditional spare ribs baked",
       estimatedTime: 30,
       isFavorite: true,
       rate: 4.8,
