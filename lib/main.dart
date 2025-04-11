@@ -13,6 +13,7 @@ import 'package:recipe_app/presentation/components/f_recipe_card.dart';
 import 'package:recipe_app/presentation/components/f_small_button.dart';
 import 'package:recipe_app/presentation/saved_recipe/view/saved_recipes_screen.dart';
 import 'package:recipe_app/presentation/saved_recipe/view_model/saved_recipes_view_model.dart';
+import 'package:recipe_app/presentation/splash_screen/view/splash_screen.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 
 void main() {
@@ -20,13 +21,7 @@ void main() {
     MaterialApp(
       home: Scaffold(
         backgroundColor: AppColors.white,
-        body: SavedRecipesScreen(
-          savedRecipesViewModel: SavedRecipesViewModel(
-            recipeRepository: RecipeRepositoryImpl(
-              recipeDataSource: RecipeDataSourceImpl(),
-            ),
-          )..fetchSavedRecipes(),
-        ),
+        body: SplashScreen(),
       ),
     ),
   );

@@ -16,38 +16,40 @@ class SavedRecipesScreen extends StatefulWidget {
 class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: widget.savedRecipesViewModel,
-      builder: (context, snapshot) {
-        return SafeArea(
-          bottom: false,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 10),
-              Text(
-                'Saved recipes',
-                style: TextStyles.mediumTextBold(color: AppColors.black),
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-                  itemCount: widget.savedRecipesViewModel.savedRecipes.length,
-                  itemBuilder: (context, index) {
-                    final recipe =
-                        widget.savedRecipesViewModel.savedRecipes[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: FRecipeCard(recipe: recipe),
-                    );
-                  },
+    return Scaffold(
+      body: ListenableBuilder(
+        listenable: widget.savedRecipesViewModel,
+        builder: (context, snapshot) {
+          return SafeArea(
+            bottom: false,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 10),
+                Text(
+                  'Saved recipes',
+                  style: TextStyles.mediumTextBold(color: AppColors.black),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+                    itemCount: widget.savedRecipesViewModel.savedRecipes.length,
+                    itemBuilder: (context, index) {
+                      final recipe =
+                          widget.savedRecipesViewModel.savedRecipes[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: FRecipeCard(recipe: recipe),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
