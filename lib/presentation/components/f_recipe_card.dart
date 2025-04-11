@@ -12,15 +12,26 @@ class FRecipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // 이미지 배경
-        Container(
-          width: double.infinity,
-          height: 200,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: NetworkImage(recipe.imageUrl),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: SizedBox(
+            width: double.infinity,
+            height: 200,
+            child: Image.network(
+              recipe.imageUrl,
               fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                );
+              },
             ),
           ),
         ),
