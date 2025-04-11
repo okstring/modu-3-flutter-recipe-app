@@ -17,7 +17,7 @@ class SavedRecipesViewModel with ChangeNotifier {
     required RecipeRepository recipeRepository,
   }) : _recipeRepository = recipeRepository;
 
-  void fetchSavedRecipes() async {
+  Future<void> fetchSavedRecipes() async {
     _isLoading = true;
     notifyListeners();
 
