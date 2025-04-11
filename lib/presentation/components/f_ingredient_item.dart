@@ -35,6 +35,16 @@ class FIngredientItem extends StatelessWidget {
               width: 40,
               height: 40,
               fit: BoxFit.cover,
+              errorBuilder: (_, _, _) {
+                return Icon(Icons.image_not_supported, size: 24);
+              },
+              loadingBuilder:  (_, widget, imageChunkEvent) {
+                if (imageChunkEvent == null) {
+                  return widget;
+                }
+
+                return Icon(Icons.fastfood, size: 24);
+              },
             ),
           ),
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/data/model/ingredient.dart';
 import 'package:recipe_app/data/model/recipe.dart';
 import 'package:recipe_app/presentation/components/f_big_button.dart';
-import 'package:recipe_app/presentation/components/f_fillter_button.dart';
+import 'package:recipe_app/presentation/components/f_filter_button.dart';
 import 'package:recipe_app/presentation/components/f_ingredient_item.dart';
 import 'package:recipe_app/presentation/components/f_medium_button.dart';
 import 'package:recipe_app/presentation/components/f_rating_button.dart';
@@ -32,7 +32,7 @@ void main() {
                   ),
                 ),
 
-                FRecipeCart(
+                FRecipeCard(
                   recipe: Recipe.empty.copyWith(
                     name: '뜨끄은하고 얼크은하고 고기 많이많이 들어가고 사골육수로 끓여낸 김치찌개',
                     estimatedTime: 20,

@@ -21,7 +21,7 @@ package "User Domain" {
     String job
     int followersCount
     int followingsCount
-    int receipeCount
+    int recipeCount
   }
 
   class GoogleUser extends User {
@@ -64,11 +64,11 @@ package "Recipe Domain" {
     five
   }
 
-  class ReceipeTagList {
-    List<String> receipeTags
+  class RecipeTagList {
+    List<String> recipeTags
   }
 
-  class Receipe {
+  class Recipe {
     String id
     String name
     int estimatedTime
@@ -80,13 +80,13 @@ package "Recipe Domain" {
     String imageUrl
   }
 
-  class ReceipeInfo extends Receipe {
+  class RecipeInfo extends Recipe {
     int reviewCount
-    List<Ingrident> ingrident
+    List<Ingredient> ingredient
     List<Procedure> procedure
     String makeUserLocation?
-    bool isfollow?
-    String receipeDeepLink
+    bool isFollow?
+    String recipeDeepLink
   }
 
   class Ingrident {
@@ -100,33 +100,33 @@ package "Recipe Domain" {
   }
 
   interface TagRepository {
-    Future<Result<ReceipeTagList>> getTagList()
+    Future<Result<RecipeTagList>> getTagList()
   }
 
-  interface ReceipeRepository {
-    Future<Result<List<Receipe>>> getReceipeListForTag(String tag)
-    Future<Result<List<Receipe>>> getReceipeListForSearch(String query, TimeFilterType timeFilterType, RateType rateType, String tag)
-    Future<Result<List<Receipe>>> getReceipeListForSavedReceipe()
-    Future<Result<List<Receipe>>> getReceipeListForRecent()
-    Future<Result<ReceipeInfo>> getReceipeInfo(String receipeId)
+  interface RecipeRepository {
+    Future<Result<List<Recipe>>> getRecipeListForTag(String tag)
+    Future<Result<List<Recipe>>> getRecipeListForSearch(String query, TimeFilterType timeFilterType, RateType rateType, String tag)
+    Future<Result<List<Recipe>>> getRecipeListForSavedRecipe()
+    Future<Result<List<Recipe>>> getRecipeListForRecent()
+    Future<Result<RecipeInfo>> getRecipeInfo(String recipeId)
   }
 
-  interface UserReceipeRepository {
-    Future<Result<void>> saveBookmark(String receipeId)
-    Future<Result<void>> removeBookmark(String receipeId)
-    Future<Result<void>> rateRating(String receipeId)
-    Future<Result<void>> addReceipe(ReceipeInfo receipeInfo)
-    Future<Result<String>> getReceipeDeepLink(String receipeId)
-    Future<Result<Receipe>> getMyReceipe()
-    Future<Result<Receipe>> getMyReceipeWithVideo()
-    Future<Result<Receipe>> getMyReceipeWithTag()
+  interface UserRecipeRepository {
+    Future<Result<void>> saveBookmark(String recipeId)
+    Future<Result<void>> removeBookmark(String recipeId)
+    Future<Result<void>> rateRating(String recipeId)
+    Future<Result<void>> addRecipe(RecipeInfo recipeInfo)
+    Future<Result<String>> getRecipeDeepLink(String recipeId)
+    Future<Result<Recipe>> getMyRecipe()
+    Future<Result<Recipe>> getMyRecipeWithVideo()
+    Future<Result<Recipe>> getMyRecipeWithTag()
   }
 }
 
 ' ================ REVIEW DOMAIN ================
 package "Review Domain" {
   class ReviewUiModel {
-    String receipeId
+    String recipeId
     int commentsCount
     int favoriteCount
     List<Review> reviews
@@ -142,8 +142,8 @@ package "Review Domain" {
   }
 
   interface ReviewRepsitory {
-    Future<Result<void>> writeComment(String receipeId, String contents)
-    Future<Result<ReviewUiModel>> getReceipeInfo(String id)
+    Future<Result<void>> writeComment(String recipeId, String contents)
+    Future<Result<ReviewUiModel>> getRecipeInfo(String id)
     Future<Result<void>> likeReview(String reviewId)
     Future<Result<void>> unlikeReview(String reviewId)
   }
@@ -176,11 +176,11 @@ package "Notification Domain" {
 User -- UserRepository
 User -- AuthRepository
 
-Receipe -- ReceipeRepository
-ReceipeTagList -- TagRepository
-Receipe -- UserReceipeRepository
+Recipe -- RecipeRepository
+RecipeTagList -- TagRepository
+Recipe -- UserRecipeRepository
 
-ReviewUiModel -- ReviewRepsitory
+ReviewUiModel -- ReviewRepository
 
 Notification -- NotificationRepository
 

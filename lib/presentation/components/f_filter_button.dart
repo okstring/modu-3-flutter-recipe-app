@@ -6,7 +6,11 @@ class FFilterButton extends StatelessWidget {
   final String text;
   final bool isSelected;
 
-  const FFilterButton({super.key, required this.text, required this.isSelected});
+  const FFilterButton({
+    super.key,
+    required this.text,
+    required this.isSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +22,15 @@ class FFilterButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? AppColors.primary80 : AppColors.white,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            width: 1,
-            color: AppColors.primary80,
-          ),
+          border: Border.all(width: 1, color: AppColors.primary80),
         ),
         child: Text(
           text,
           style: TextStyles.smallerTextRegular(
             color: isSelected ? AppColors.white : AppColors.primary80,
           ),
-        )
         ),
+      ),
     );
   }
 }
