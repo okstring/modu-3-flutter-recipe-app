@@ -2,7 +2,7 @@ import 'package:recipe_app/data/dto/recipe_dto.dart';
 import 'package:recipe_app/data/model/recipe.dart';
 
 extension RecipeMapper on RecipeDto {
-  Recipe toModel() {
+  Recipe toRecipe() {
     return Recipe(
       id: id,
       name: name,
