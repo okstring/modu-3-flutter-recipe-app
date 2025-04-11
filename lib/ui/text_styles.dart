@@ -64,9 +64,9 @@ abstract class TextStyles {
     );
   }
 
-  static TextStyle smallerTextRegular({Color color = AppColors.white}) {
+  static TextStyle smallerTextRegular({Color color = AppColors.white, double? fontSize}) {
     return TextStyle(
-      fontSize: 11,
+      fontSize: fontSize ?? 11,
       fontWeight: FontWeight.normal,
       fontFamily: _fontName,
       height: 1.5,
@@ -74,7 +74,6 @@ abstract class TextStyles {
     );
   }
 
-  // Bold 텍스트 스타일 (color 매개변수 포함)
   static TextStyle titleTextBold({Color color = AppColors.white}) {
     return TextStyle(
       fontSize: 50,
