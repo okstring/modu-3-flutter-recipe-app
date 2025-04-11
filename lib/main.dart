@@ -18,13 +18,13 @@ void main() {
         backgroundColor: AppColors.white,
         body: Center(
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               spacing: 16,
               children: [
-                FIngredientItem(
+                const FIngredientItem(
                   ingredient: Ingredient(
                     name: 'Tomatos',
                     weight: '100g',
@@ -42,10 +42,10 @@ void main() {
                   ),
                 ),
 
-                FRatingButton(text: 'star', isSelected: false),
-                FRatingButton(text: 'star', isSelected: true),
-                FFilterButton(text: 'foo', isSelected: false),
-                FFilterButton(text: 'bar', isSelected: true),
+                const FRatingButton(text: 'star', isSelected: false),
+                const FRatingButton(text: 'star', isSelected: true),
+                const FFilterButton(text: 'foo', isSelected: false),
+                const FFilterButton(text: 'bar', isSelected: true),
                 FBigButton(text: 'Hello', voidCallback: () {}),
                 FMediumButton(text: 'Hello', voidCallback: () {}),
                 FSmallButton(text: 'Hello', voidCallback: () {}),

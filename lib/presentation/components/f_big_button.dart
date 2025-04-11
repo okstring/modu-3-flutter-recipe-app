@@ -47,7 +47,7 @@ class _FBigButtonState extends State<FBigButton> {
           children: [
             Flexible(
               child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 114),
+                constraints: const BoxConstraints(minWidth: 114),
                 child: Text(
                   widget.text,
                   style: TextStyles.normalTextBold(),

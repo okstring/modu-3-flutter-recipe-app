@@ -29,7 +29,7 @@ class FRecipeCard extends StatelessWidget {
           height: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [Colors.transparent, Colors.transparent, Colors.black],
@@ -50,7 +50,7 @@ class FRecipeCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       _buildRecipeNameText(),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       _buildMakeUserNameText(),
                     ],
                   ),
@@ -66,9 +66,9 @@ class FRecipeCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         _buildTimeIcon(),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         _buildEstimatedTimeText(),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         _buildBookMarkButton(),
                       ],
                     ),
@@ -86,11 +86,11 @@ class FRecipeCard extends StatelessWidget {
     return Container(
       width: 24,
       height: 24,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.white),
+      decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.white),
       child:
           recipe.isFavorite
-              ? Icon(Icons.bookmark, size: 16, color: AppColors.primary80)
-              : Icon(
+              ? const Icon(Icons.bookmark, size: 16, color: AppColors.primary80)
+              : const Icon(
                 Icons.bookmark_border,
                 size: 16,
                 color: AppColors.primary80,
@@ -106,7 +106,7 @@ class FRecipeCard extends StatelessWidget {
   }
 
   Icon _buildTimeIcon() =>
-      Icon(Icons.schedule, size: 17, color: AppColors.gray4);
+      const Icon(Icons.schedule, size: 17, color: AppColors.gray4);
 
   Container _buildRateContainer() {
     return Container(
@@ -122,7 +122,7 @@ class FRecipeCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(Icons.star, size: 11, color: AppColors.rating),
+          const Icon(Icons.star, size: 11, color: AppColors.rating),
           Text(
             '${recipe.rate}',
             style: TextStyles.smallerTextRegular(color: AppColors.black, fontSize: 8),

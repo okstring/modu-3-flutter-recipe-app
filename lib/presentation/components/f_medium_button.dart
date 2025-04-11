@@ -51,7 +51,7 @@ class _FMediumButtonState extends State<FMediumButton> {
           children: [
             Flexible(
               child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: 114),
+                constraints: const BoxConstraints(minWidth: 114),
                 child: Text(
                   widget.text,
                   style: TextStyles.normalTextBold(),
