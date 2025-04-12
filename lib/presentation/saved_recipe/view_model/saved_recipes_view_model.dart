@@ -13,17 +13,28 @@ class SavedRecipesViewModel with ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  String? _errorMessage;
+
+  String? get errorMessage => _errorMessage;
+
   SavedRecipesViewModel({
     required RecipeRepository recipeRepository,
   }) : _recipeRepository = recipeRepository;
 
   Future<void> fetchSavedRecipes() async {
     _isLoading = true;
+    _errorMessage = null;
     notifyListeners();
 
-    final savedRecipes = await _recipeRepository.getSavedRecipe();
-    _savedRecipes.addAll(savedRecipes);
-    _isLoading = false;
-    notifyListeners();
+    try {
+      final savedRecipes = await _recipeRepository.getSavedRecipe();
+      _savedRecipes.clear();
+      _savedRecipes.addAll(savedRecipes);
+    } catch (e) {
+      _errorMessage = e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }
