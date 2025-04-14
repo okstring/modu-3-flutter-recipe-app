@@ -3,7 +3,7 @@ import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
 class FInputField extends StatelessWidget {
-  final String label;
+  final String? label;
   final String placeHolder;
   final String value;
   final Key _textFieldKey;
@@ -12,7 +12,7 @@ class FInputField extends StatelessWidget {
 
   const FInputField({
     super.key,
-    required this.label,
+    this.label,
     required this.placeHolder,
     required this.value,
     required this.isVisibleSearchIcon,
@@ -22,20 +22,20 @@ class FInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: double.infinity,
-      height: 83,
+      constraints: BoxConstraints(
+        minHeight: 40
+      ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (label.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Text(
-                label,
-                style: TextStyles.smallTextRegular(color: AppColors.black),
-              ),
+          if (label != null)
+            Text(
+              label ?? '',
+              style: TextStyles.smallTextRegular(color: AppColors.black),
             ),
 
           Container(
