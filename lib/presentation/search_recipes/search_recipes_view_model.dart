@@ -17,12 +17,24 @@ class SearchRecipesViewModel with ChangeNotifier {
   }) : _recipeRepository = recipeRepository,
        _debouncer = debouncer ?? Debouncer(delay: const Duration(milliseconds: 500));
 
-  Future<void> fetchSearchRecipes({String query = ''}) async {
-    _debouncer.run(() async {
-      _state = state.copyWith(query: query);
+  Future<void> fetchSearchRecipes() async {
+    _state = state.copyWith(isLoading: true, errorMessage: null);
+    notifyListeners();
 
-      _state = state.copyWith(isLoading: true);
-      _state = state.copyWith(errorMessage: null);
+    try {
+      final savedRecipes = await _recipeRepository.getSavedRecipe(query: '');
+      _state = state.copyWith(searchRecipes: savedRecipes);
+    } catch (e) {
+      _state = state.copyWith(errorMessage: e.toString());
+    } finally {
+      _state = state.copyWith(isLoading: false);
+      notifyListeners();
+    }
+  }
+
+  Future<void> fetchSearchRecipesByQuery({required String query}) async {
+    _debouncer.run(() async {
+      _state = state.copyWith(query: query, isLoading: true, errorMessage: null);
       notifyListeners();
 
       try {

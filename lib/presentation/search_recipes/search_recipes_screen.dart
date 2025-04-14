@@ -21,39 +21,54 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
   @override
   Widget build(BuildContext context) {
     widget.viewModel.fetchSearchRecipes();
-    return SafeArea(
-      child: Container(
-        padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            Text(
-              widget.viewModel.state.query.isEmpty ? 'Search recipes' : 'Search Result',
-              style: TextStyles.mediumTextBold(color: AppColors.black),
+    return ListenableBuilder(
+      listenable: widget.viewModel,
+      builder: (context, snapshot) {
+        return SafeArea(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Text(
+                  'Search recipes',
+                  style: TextStyles.mediumTextBold(color: AppColors.black),
+                ),
+
+                const SizedBox(height: 17),
+                _buildSearchBarArea(),
+                const SizedBox(height: 20),
+
+                Row(
+                  children: [
+                    Text(
+                      widget.viewModel.state.query.isEmpty ? 'Recent Search' : 'Search Result',
+                      style: TextStyles.mediumTextBold(color: AppColors.black),
+                      textAlign: TextAlign.start,
+                    ),
+
+                    Spacer(),
+
+                    if (widget.viewModel.state.query.isNotEmpty)
+                      Text(
+                        '${widget.viewModel.state.searchRecipes.length} results',
+                        style: TextStyles.smallerTextRegular(color: AppColors.gray3),
+                      ),
+                    ]
+                ),
+
+                const SizedBox(height: 20,),
+
+                RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
+                  print(recipe);
+                })
+              ],
             ),
-            const SizedBox(height: 17),
-            _buildSearchBarArea(),
-            const SizedBox(height: 20),
-
-            SizedBox(
-              width: double.infinity,
-              child: Text(
-                'Recent Search',
-                style: TextStyles.mediumTextBold(color: AppColors.black),
-                textAlign: TextAlign.start,
-              ),
-            ),
-
-            const SizedBox(height: 20,),
-
-            RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
-              print(recipe);
-            })
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 
@@ -66,10 +81,11 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
         Expanded(
           child: FInputField(
             placeHolder: 'Search recipe',
-            value: '',
+            value: widget.viewModel.state.query,
             isVisibleSearchIcon: true,
             onValueChange: (value) {
-              widget.viewModel.fetchSearchRecipes(query: value);
+              print(value);
+              widget.viewModel.fetchSearchRecipesByQuery(query: value);
             },
             textFieldKey: Key('ho'),
           ),
