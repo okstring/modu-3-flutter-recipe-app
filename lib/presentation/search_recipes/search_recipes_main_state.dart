@@ -9,5 +9,6 @@ abstract class SearchRecipesMainState with _$SearchRecipesMainState {
     @Default([]) List<Recipe> searchRecipes,
     @Default(false) bool isLoading,
     @Default(null) String? errorMessage,
+    @Default('') String query,
   }) = _SearchRecipesMainState;
 }
