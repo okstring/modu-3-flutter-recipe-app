@@ -80,6 +80,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
       spacing: 20,
       children: [
         Expanded(
+          //TODO: 타이핑 후 커서 사라짐, 필터 누를 때 리스트 초기화 됨
           child: FInputField(
             placeHolder: 'Search recipe',
             value: widget.viewModel.searchRecipesMainState.query,
@@ -87,7 +88,6 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
             onValueChange: (value) {
               widget.viewModel.fetchSearchRecipesByQuery(query: value);
             },
-            textFieldKey: Key('ho'),
           ),
         ),
         FSearchFilterButton(
