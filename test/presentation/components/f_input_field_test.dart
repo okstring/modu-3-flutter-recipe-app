@@ -16,6 +16,7 @@ void main() {
       value: value,
       onValueChange: onValueChange,
       textFieldKey: textFieldKey,
+      isVisibleSearchIcon: false,
     );
 
     testWidgets('should display correct label text', (

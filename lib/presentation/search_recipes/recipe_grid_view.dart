@@ -30,7 +30,7 @@ class RecipeGridView extends StatelessWidget {
       builder: (context, snapshot) {
         return Expanded(
           child: GridView.builder(
-            itemCount: viewModel.state.searchRecipes.length,
+            itemCount: viewModel.searchRecipesMainState.searchRecipes.length,
 
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
@@ -40,7 +40,7 @@ class RecipeGridView extends StatelessWidget {
             ),
 
             itemBuilder: (context, index) {
-              final recipe = viewModel.state.searchRecipes[index];
+              final recipe = viewModel.searchRecipesMainState.searchRecipes[index];
 
               return FSmallRecipeCard(
                 recipe: recipe,
