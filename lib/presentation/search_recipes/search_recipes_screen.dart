@@ -19,12 +19,24 @@ class SearchRecipesScreen extends StatefulWidget {
 }
 
 class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
+  final FocusNode _searchFocusNode = FocusNode();
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchFocusNode.dispose();
+    _searchController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     widget.viewModel.fetchSearchRecipes();
     return ListenableBuilder(
       listenable: widget.viewModel,
       builder: (context, snapshot) {
+
+
         return SafeArea(
           child: Container(
             padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
@@ -80,14 +92,13 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
       spacing: 20,
       children: [
         Expanded(
-          //TODO: 타이핑 후 커서 사라짐, 필터 누를 때 리스트 초기화 됨
           child: FInputField(
-            placeHolder: 'Search recipe',
+            placeHolder: 'Search recipe ',
             value: widget.viewModel.searchRecipesMainState.query,
             isVisibleSearchIcon: true,
             onValueChange: (value) {
               widget.viewModel.fetchSearchRecipesByQuery(query: value);
-            },
+            }, searchController: _searchController, focusNode: _searchFocusNode,
           ),
         ),
         FSearchFilterButton(
