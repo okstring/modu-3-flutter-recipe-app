@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
 import 'package:recipe_app/data/repository/recipe_repository_impl.dart';
 import 'package:recipe_app/presentation/components/f_medium_button.dart';
@@ -75,19 +77,7 @@ class SplashScreen extends StatelessWidget {
                   FMediumButton(
                     text: 'Start Cooking',
                     voidCallback: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => SavedRecipesScreen(
-                                savedRecipesViewModel: SavedRecipesViewModel(
-                                  recipeRepository: RecipeRepositoryImpl(
-                                    recipeDataSource: RecipeDataSourceImpl(),
-                                  ),
-                                )..fetchSavedRecipes(),
-                              ),
-                        ),
-                      );
+                      context.pushReplacement(Routes.signIn);
                     },
                   ),
 

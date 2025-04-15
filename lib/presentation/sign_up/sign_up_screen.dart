@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/presentation/components/f_big_button.dart';
 import 'package:recipe_app/presentation/components/f_input_field.dart';
 import 'package:recipe_app/ui/color_styles.dart';
@@ -108,7 +110,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               SizedBox(height: 10),
 
-              FBigButton(text: 'Sign in', voidCallback: () {}),
+              FBigButton(text: 'Sign Up', voidCallback: () {
+                context.pushReplacement(Routes.home);
+              }),
               SizedBox(height: 14),
               SizedBox(
                 width: 195,
@@ -204,7 +208,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(width: 5),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.pushReplacement(Routes.signIn);
+                      },
                       child: Text(
                         'Sign In',
                         style: TextStyles.smallerTextRegular(
