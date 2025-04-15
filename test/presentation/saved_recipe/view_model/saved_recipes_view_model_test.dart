@@ -11,7 +11,7 @@ class MockRecipeRepository implements RecipeRepository {
   });
 
   @override
-  Future<List<Recipe>> getSavedRecipe() async {
+  Future<List<Recipe>> getSavedRecipe({String query = ''}) async {
     return recipes;
   }
 }

@@ -6,13 +6,15 @@ import 'package:recipe_app/data/repository/recipe_repository.dart';
 class RecipeRepositoryImpl implements RecipeRepository {
   final RecipeDataSource _recipeDataSource;
 
-  const RecipeRepositoryImpl({
-    required RecipeDataSource recipeDataSource,
-  }) : _recipeDataSource = recipeDataSource;
+  const RecipeRepositoryImpl({required RecipeDataSource recipeDataSource})
+    : _recipeDataSource = recipeDataSource;
 
   @override
-  Future<List<Recipe>> getSavedRecipe() async {
+  Future<List<Recipe>> getSavedRecipe({String query = ''}) async {
     final savedRecipesDto = await _recipeDataSource.fetchSavedRecipes();
-    return savedRecipesDto.map((e) => e.toRecipe()).toList();
+    return savedRecipesDto
+        .map((e) => e.toRecipe())
+        .where((e) => query.isNotEmpty ? e.name.contains(query) : true)
+        .toList();
   }
 }

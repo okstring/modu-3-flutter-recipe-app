@@ -10,9 +10,11 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: true,
       rate: 4.8,
       makeUserName: "최chef",
-      makeUserImageUrl: "https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg",
-      videoUrl: "https://player.vimeo.com/external/414879105.sd.mp4?s=9ec2ec4a3f95584bba0a30b8c5c33232e79c6aee&profile_id=139&oauth2_token_id=57447761",
-      imageUrl: "https://images.pexels.com/photos/5835353/pexels-photo-5835353.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg",
+      videoUrl:
+          "https://player.vimeo.com/external/414879105.sd.mp4?s=9ec2ec4a3f95584bba0a30b8c5c33232e79c6aee&profile_id=139&oauth2_token_id=57447761",
+      imageUrl: "https://picsum.photos/200?random=11",
     ),
 
     RecipeDto(
@@ -22,9 +24,11 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: true,
       rate: 4.9,
       makeUserName: "한식마스터",
-      makeUserImageUrl: "https://images.pexels.com/photos/3771807/pexels-photo-3771807.jpeg",
-      videoUrl: "https://player.vimeo.com/external/371867463.sd.mp4?s=76edaeefdb9eb67734ca388c5889e202137dd11a&profile_id=139&oauth2_token_id=57447761",
-      imageUrl: "https://images.pexels.com/photos/2313686/pexels-photo-2313686.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/3771807/pexels-photo-3771807.jpeg",
+      videoUrl:
+          "https://player.vimeo.com/external/371867463.sd.mp4?s=76edaeefdb9eb67734ca388c5889e202137dd11a&profile_id=139&oauth2_token_id=57447761",
+      imageUrl: "https://picsum.photos/200?random=12",
     ),
 
     RecipeDto(
@@ -34,9 +38,10 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: false,
       rate: 4.5,
       makeUserName: "파스타장인",
-      makeUserImageUrl: "https://images.pexels.com/photos/887827/pexels-photo-887827.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/887827/pexels-photo-887827.jpeg",
       videoUrl: null,
-      imageUrl: "https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg",
+      imageUrl: "https://picsum.photos/200?random=13",
     ),
 
     RecipeDto(
@@ -46,9 +51,11 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: true,
       rate: 4.3,
       makeUserName: "건강식연구소",
-      makeUserImageUrl: "https://images.pexels.com/photos/1197132/pexels-photo-1197132.jpeg",
-      videoUrl: "https://player.vimeo.com/external/403283608.sd.mp4?s=e749a56d72da7809f57b6a865073b6b199326e19&profile_id=139&oauth2_token_id=57447761",
-      imageUrl: "https://images.pexels.com/photos/1213710/pexels-photo-1213710.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/1197132/pexels-photo-1197132.jpeg",
+      videoUrl:
+          "https://player.vimeo.com/external/403283608.sd.mp4?s=e749a56d72da7809f57b6a865073b6b199326e19&profile_id=139&oauth2_token_id=57447761",
+      imageUrl: "https://picsum.photos/200?random=14",
     ),
 
     RecipeDto(
@@ -58,9 +65,10 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: false,
       rate: 4.7,
       makeUserName: "집밥요리사",
-      makeUserImageUrl: "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/3771089/pexels-photo-3771089.jpeg",
       videoUrl: null,
-      imageUrl: "https://images.pexels.com/photos/723198/pexels-photo-723198.jpeg",
+      imageUrl: "https://picsum.photos/200?random=15",
     ),
 
     RecipeDto(
@@ -70,9 +78,11 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: true,
       rate: 4.6,
       makeUserName: "베이킹마스터",
-      makeUserImageUrl: "https://images.pexels.com/photos/4148961/pexels-photo-4148961.jpeg",
-      videoUrl: "https://player.vimeo.com/external/368767165.sd.mp4?s=0797a7c9b25ae2a1f192a1ded04a7f335774cb91&profile_id=139&oauth2_token_id=57447761",
-      imageUrl: "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/4148961/pexels-photo-4148961.jpeg",
+      videoUrl:
+          "https://player.vimeo.com/external/368767165.sd.mp4?s=0797a7c9b25ae2a1f192a1ded04a7f335774cb91&profile_id=139&oauth2_token_id=57447761",
+      imageUrl: "https://picsum.photos/200?random=16",
     ),
 
     RecipeDto(
@@ -82,21 +92,132 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       isFavorite: false,
       rate: 4.4,
       makeUserName: "춘천요리사",
-      makeUserImageUrl: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
-      videoUrl: "https://player.vimeo.com/external/352320117.sd.mp4?s=81764d11ab83a6c46901e1054221fed80a26f073&profile_id=139&oauth2_token_id=57447761",
-      imageUrl: "https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+      videoUrl:
+          "https://player.vimeo.com/external/352320117.sd.mp4?s=81764d11ab83a6c46901e1054221fed80a26f073&profile_id=139&oauth2_token_id=57447761",
+      imageUrl: "https://picsum.photos/200?random=17",
     ),
-
+    RecipeDto(
+      id: "recipe_001",
+      name: "김치볶음밥",
+      estimatedTime: 20,
+      isFavorite: false,
+      rate: 4.2,
+      makeUserName: "한식달인",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=1",
+    ),
+    RecipeDto(
+      id: "recipe_002",
+      name: "된장찌개",
+      estimatedTime: 30,
+      isFavorite: true,
+      rate: 4.5,
+      makeUserName: "시골할머니",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/women/2.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=2",
+    ),
+    RecipeDto(
+      id: "recipe_003",
+      name: "비빔밥",
+      estimatedTime: 25,
+      isFavorite: true,
+      rate: 4.8,
+      makeUserName: "전주요리사",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/men/3.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=3",
+    ),
+    RecipeDto(
+      id: "recipe_004",
+      name: "불고기",
+      estimatedTime: 35,
+      isFavorite: false,
+      rate: 4.6,
+      makeUserName: "서울셰프",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/men/4.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=4",
+    ),
+    RecipeDto(
+      id: "recipe_005",
+      name: "잡채",
+      estimatedTime: 40,
+      isFavorite: false,
+      rate: 4.3,
+      makeUserName: "명절마스터",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/women/5.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=5",
+    ),
+    RecipeDto(
+      id: "recipe_006",
+      name: "떡볶이",
+      estimatedTime: 15,
+      isFavorite: true,
+      rate: 4.7,
+      makeUserName: "분식왕",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/men/6.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=6",
+    ),
+    RecipeDto(
+      id: "recipe_007",
+      name: "닭갈비",
+      estimatedTime: 40,
+      isFavorite: false,
+      rate: 4.4,
+      makeUserName: "춘천요리사",
+      makeUserImageUrl:
+          "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
+      videoUrl:
+          "https://player.vimeo.com/external/352320117.sd.mp4?s=81764d11ab83a6c46901e1054221fed80a26f073&profile_id=139&oauth2_token_id=57447761",
+      imageUrl: "https://picsum.photos/200?random=7",
+    ),
     RecipeDto(
       id: "recipe_008",
-      name: "비빔밥",
-      estimatedTime: 35,
-      isFavorite: true,
+      name: "갈비찜",
+      estimatedTime: 50,
+      isFavorite: false,
       rate: 4.9,
-      makeUserName: "전통한식",
-      makeUserImageUrl: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg",
-      videoUrl: null,
-      imageUrl: "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg",
+      makeUserName: "명절셰프",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/women/7.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=8",
+    ),
+    RecipeDto(
+      id: "recipe_009",
+      name: "콩나물국밥",
+      estimatedTime: 20,
+      isFavorite: true,
+      rate: 4.1,
+      makeUserName: "해장국장인",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/men/9.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=9",
+    ),
+    RecipeDto(
+      id: "recipe_010",
+      name: "오징어볶음",
+      estimatedTime: 30,
+      isFavorite: false,
+      rate: 4.0,
+      makeUserName: "해물셰프",
+      makeUserImageUrl: "https://randomuser.me/api/portraits/men/10.jpg",
+      videoUrl:
+          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      imageUrl: "https://picsum.photos/200?random=10",
     ),
   ];
 
@@ -104,5 +225,4 @@ class RecipeDataSourceImpl implements RecipeDataSource {
   Future<List<RecipeDto>> fetchSavedRecipes() async {
     return await Future.value(_mockRecipes);
   }
-
 }
