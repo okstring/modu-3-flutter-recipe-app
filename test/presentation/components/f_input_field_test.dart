@@ -16,6 +16,8 @@ void main() {
       value: value,
       onValueChange: onValueChange,
       isVisibleSearchIcon: false,
+      searchController: SearchController(),
+      focusNode: FocusNode(),
     );
 
     testWidgets('should display correct label text', (

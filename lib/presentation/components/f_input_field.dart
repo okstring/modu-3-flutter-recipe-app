@@ -7,8 +7,9 @@ class FInputField extends StatelessWidget {
   final String placeHolder;
   final String value;
   final bool isVisibleSearchIcon;
-  final TextEditingController searchController;
-  final FocusNode focusNode;
+  final TextEditingController? searchController;
+  final FocusNode? focusNode;
+  final double? height;
   final void Function(String) onValueChange;
 
   const FInputField({
@@ -18,8 +19,9 @@ class FInputField extends StatelessWidget {
     required this.value,
     required this.isVisibleSearchIcon,
     required this.onValueChange,
-    required this.searchController,
-    required this.focusNode,
+    this.searchController,
+    this.focusNode,
+    this.height = 40,
   });
 
   @override
@@ -38,9 +40,11 @@ class FInputField extends StatelessWidget {
               style: TextStyles.smallTextRegular(color: AppColors.black),
             ),
 
+          SizedBox(height: 5),
+
           Container(
             width: double.infinity,
-            height: 40,
+            height: height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               border: Border.all(color: AppColors.gray4, width: 1.5),
