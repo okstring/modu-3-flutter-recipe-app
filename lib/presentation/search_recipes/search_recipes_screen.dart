@@ -37,47 +37,49 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
       builder: (context, snapshot) {
 
 
-        return SafeArea(
-          child: Container(
-            padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                Text(
-                  'Search recipes',
-                  style: TextStyles.mediumTextBold(color: AppColors.black),
-                ),
+        return Scaffold(
+          body: SafeArea(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Text(
+                    'Search recipes',
+                    style: TextStyles.mediumTextBold(color: AppColors.black),
+                  ),
 
-                const SizedBox(height: 17),
-                _buildSearchBarArea(context),
-                const SizedBox(height: 20),
+                  const SizedBox(height: 17),
+                  _buildSearchBarArea(context),
+                  const SizedBox(height: 20),
 
-                Row(
-                  children: [
-                    Text(
-                      widget.viewModel.searchRecipesMainState.query.isEmpty ? 'Recent Search' : 'Search Result',
-                      style: TextStyles.mediumTextBold(color: AppColors.black),
-                      textAlign: TextAlign.start,
-                    ),
-
-                    Spacer(),
-
-                    if (widget.viewModel.searchRecipesMainState.query.isNotEmpty)
+                  Row(
+                    children: [
                       Text(
-                        '${widget.viewModel.searchRecipesMainState.searchRecipes.length} results',
-                        style: TextStyles.smallerTextRegular(color: AppColors.gray3),
+                        widget.viewModel.searchRecipesMainState.query.isEmpty ? 'Recent Search' : 'Search Result',
+                        style: TextStyles.mediumTextBold(color: AppColors.black),
+                        textAlign: TextAlign.start,
                       ),
-                    ]
-                ),
 
-                const SizedBox(height: 20,),
+                      Spacer(),
 
-                RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
-                  print('레시피 누름: ${recipe.name}');
-                })
-              ],
+                      if (widget.viewModel.searchRecipesMainState.query.isNotEmpty)
+                        Text(
+                          '${widget.viewModel.searchRecipesMainState.searchRecipes.length} results',
+                          style: TextStyles.smallerTextRegular(color: AppColors.gray3),
+                        ),
+                      ]
+                  ),
+
+                  const SizedBox(height: 20,),
+
+                  RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
+                    print('레시피 누름: ${recipe.name}');
+                  })
+                ],
+              ),
             ),
           ),
         );
