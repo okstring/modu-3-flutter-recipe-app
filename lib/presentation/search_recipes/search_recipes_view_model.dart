@@ -31,7 +31,7 @@ class SearchRecipesViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
-      final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipe(query: '');
+      final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(query: '');
       _searchRecipesMainState = searchRecipesMainState.copyWith(searchRecipes: savedRecipes);
     } catch (e) {
       _searchRecipesMainState = searchRecipesMainState.copyWith(errorMessage: e.toString());
@@ -47,7 +47,7 @@ class SearchRecipesViewModel with ChangeNotifier {
       notifyListeners();
 
       try {
-        final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipe(query: query);
+        final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(query: query);
         _searchRecipesMainState = searchRecipesMainState.copyWith(searchRecipes: savedRecipes);
       } catch (e) {
         _searchRecipesMainState = searchRecipesMainState.copyWith(errorMessage: e.toString());

@@ -16,7 +16,7 @@ class SavedRecipesViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
-      final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipe();
+      final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes();
       _state = state.copyWith(savedRecipes: savedRecipes);
     } catch (e) {
       _state = state.copyWith(errorMessage: e.toString());

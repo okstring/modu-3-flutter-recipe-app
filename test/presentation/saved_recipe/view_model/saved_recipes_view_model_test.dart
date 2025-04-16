@@ -2,18 +2,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
 import 'package:recipe_app/data/repository/book_mark_repository_impl.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
+import 'package:recipe_app/domain/model/recipe_info.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
 import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/presentation/saved_recipe/saved_recipes_view_model.dart';
 
 class MockRecipeRepository implements RecipeRepository {
   List<Recipe> recipes;
+  RecipeInfo recipeInfo;
 
-  MockRecipeRepository({required this.recipes});
+  MockRecipeRepository({required this.recipes, required this.recipeInfo});
 
   @override
-  Future<List<Recipe>> getSavedRecipe({String query = ''}) async {
+  Future<List<Recipe>> getSavedRecipes({String query = ''}) async {
     return recipes;
+  }
+
+  @override
+  Future<RecipeInfo> getRecipesInfo({required String id}) async {
+    return recipeInfo;
   }
 }
 
@@ -32,6 +39,7 @@ void main() {
           imageUrl: 'recipe.jpg',
         ),
       ],
+      recipeInfo: RecipeInfo.empty,
     );
     SavedRecipesViewModel viewModel = SavedRecipesViewModel(
       getSavedRecipesUseCase: GetSavedRecipesUseCase(

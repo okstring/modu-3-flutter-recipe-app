@@ -12,8 +12,12 @@ class GetSavedRecipesUseCase {
   }) : _recipeRepository = recipeRepository,
        _bookMarkRepository = bookMarkRepository;
 
-  Future<List<Recipe>> getSavedRecipe({String query = ''}) {
-    return _recipeRepository.getSavedRecipe(query: query);
+  Future<List<Recipe>> getSavedRecipes({String query = ''}) {
+    return _recipeRepository.getSavedRecipes(query: query);
+  }
+
+  Future<List<Recipe>> getRecipeInfo({String query = ''}) {
+    return _recipeRepository.getSavedRecipes(query: query);
   }
 
   Future<Recipe> toggleFavorite(String id) {
