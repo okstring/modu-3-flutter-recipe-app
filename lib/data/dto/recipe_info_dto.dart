@@ -17,7 +17,7 @@ class RecipeInfoDto {
   String imageUrl;
   int reviewCount;
   List<IngredientDto> ingredient;
-  List<ProcedureDto> procedure;
+  List<String> procedures;
   String? makeUserLocation;
   bool? isFollow;
   String recipeDeepLink;
@@ -34,7 +34,7 @@ class RecipeInfoDto {
     required this.imageUrl,
     required this.reviewCount,
     required this.ingredient,
-    required this.procedure,
+    required this.procedures,
     this.makeUserLocation,
     this.isFollow,
     required this.recipeDeepLink,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/domain/model/type/tabs_type.dart';
 import 'package:recipe_app/domain/use_case/get_recipe_info_use_case.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_state.dart';
 
@@ -12,7 +13,9 @@ class IngredientViewModel extends ChangeNotifier {
     required IngredientState state,
     required GetRecipeInfoUseCase getRecipeInfoUseCase,
   }) : _state = state,
-       _getRecipeInfoUseCase = getRecipeInfoUseCase;
+       _getRecipeInfoUseCase = getRecipeInfoUseCase {
+    getRecipesInfo(state.id);
+  }
 
   Future<void> getRecipesInfo(String id) async {
     _state = state.copyWith(isLoading: true, errorMessage: null);
@@ -26,7 +29,12 @@ class IngredientViewModel extends ChangeNotifier {
     } finally {
       _state = state.copyWith(isLoading: false);
       notifyListeners();
-      print(_state);
     }
+  }
+
+  void changeTabsType(int index) {
+    final changedTabs = TabsType.values.firstWhere((e) => e.index == index);
+    _state = state.copyWith(tabsType: changedTabs);
+    notifyListeners();
   }
 }

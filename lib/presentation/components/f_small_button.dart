@@ -6,8 +6,18 @@ import 'package:recipe_app/ui/text_styles.dart';
 class FSmallButton extends StatefulWidget {
   final String text;
   final VoidCallback voidCallback;
+  final double width;
+  final double height;
+  final TextStyle style;
 
-  const FSmallButton({super.key, required this.text, required this.voidCallback});
+  FSmallButton({
+    super.key,
+    required this.text,
+    required this.voidCallback,
+    this.width = 174,
+    this.height = 37,
+    TextStyle? style,
+  }): style = style ?? TextStyles.normalTextBold();
 
   @override
   State<FSmallButton> createState() => _FSmallButtonState();
@@ -38,11 +48,14 @@ class _FSmallButtonState extends State<FSmallButton> {
         _changeButtonType(FButtonType.defaultState);
       },
       child: Container(
-        width: 174,
-        height: 37,
+        width: widget.width,
+        height: widget.height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: _buttonType == FButtonType.disabledState ? AppColors.gray4 : AppColors.primary100,
+          color:
+              _buttonType == FButtonType.disabledState
+                  ? AppColors.gray4
+                  : AppColors.primary100,
         ),
         alignment: Alignment.center,
         child: Row(
@@ -53,7 +66,7 @@ class _FSmallButtonState extends State<FSmallButton> {
                 constraints: const BoxConstraints(minWidth: 114),
                 child: Text(
                   widget.text,
-                  style: TextStyles.normalTextBold(),
+                  style: widget.style,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   softWrap: false,

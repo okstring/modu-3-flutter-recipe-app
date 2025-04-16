@@ -17,7 +17,7 @@ extension RecipeInfoMapper on RecipeInfoDto {
       imageUrl: imageUrl,
       reviewCount: reviewCount,
       ingredient: ingredient.map((e) => e.toIngredient()).toList(),
-      procedure: procedure.map((e) => e.toProcedure()).toList(),
+      procedures: procedures,
       makeUserLocation: makeUserLocation,
       isFollow: isFollow,
       recipeDeepLink: recipeDeepLink,

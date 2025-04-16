@@ -253,16 +253,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
-            "양념 재료를 모두 섞어 양념장을 만듭니다.",
-            "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
-            "오븐을 180°C로 예열합니다.",
-            "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "서울, 한국",
       isFollow: false,
@@ -302,17 +298,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "소고기는 얇게 썰어 준비합니다.",
-            "양파와 배는 곱게 갈아 체에 걸러 즙을 냅니다.",
-            "간장, 설탕, 참기름, 다진 마늘, 양파와 배즙을 섞어 양념장을 만듭니다.",
-            "소고기에 양념장을 넣고 30분간 재워둡니다.",
-            "팬을 뜨겁게 달군 후 재운 고기를 볶아줍니다.",
-            "양파를 넣고 함께 볶다가 고기가 익으면 완성입니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "전주, 한국",
       isFollow: true,
@@ -352,16 +343,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "넉넉한 양의 물에 소금을 넣고 스파게티를 삶습니다.",
-            "베이컨은 작게 썰어 팬에 볶아 바삭하게 만듭니다.",
-            "달걀과 파마산 치즈를 잘 섞어 소스를 만듭니다.",
-            "삶은 면을 베이컨 팬에 넣고 달걀 소스를 부어 빠르게 섞습니다.",
-            "불을 끄고 남은 치즈를 뿌려 완성합니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "밀라노, 이탈리아",
       isFollow: false,
@@ -401,16 +388,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "베이컨을 바삭하게 구워 잘게 부숩니다.",
-            "아보카도는 반으로 갈라 씨를 제거하고 주사위 모양으로 자릅니다.",
-            "양상추는 깨끗이 씻어 손으로 잘게 찢습니다.",
-            "올리브 오일, 레몬즙, 소금, 후추를 섞어 드레싱을 만듭니다.",
-            "모든 재료를 그릇에 담고 드레싱을 뿌려 가볍게 섞어줍니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "LA, 미국",
       isFollow: true,
@@ -450,16 +433,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "스팸은 작은 주사위 모양으로 썰어 팬에 볶아 바삭하게 만듭니다.",
-            "김치는 잘게 썰어 스팸이 있는 팬에 넣고 볶습니다.",
-            "김치가 볶아지면 찬밥을 넣고 잘 섞어가며 볶습니다.",
-            "밥알이 잘 풀어지면 계란을 풀어 넣고 재빨리 섞어줍니다.",
-            "참기름을 두르고 통깨를 뿌려 완성합니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "부산, 한국",
       isFollow: false,
@@ -509,19 +488,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "오븐을 180°C로 예열합니다.",
-            "밀가루, 코코아 파우더, 베이킹파우더를 체쳐서 섞어둡니다.",
-            "버터와 설탕을 크림화하여 부드럽게 만듭니다.",
-            "계란을 하나씩 넣어가며 잘 섞어줍니다.",
-            "체친 가루 재료를 넣고 주걱으로 살살 섞어줍니다.",
-            "초콜릿 칩을 넣고 가볍게 섞습니다.",
-            "머핀 틀에 반죽을 2/3 정도 채웁니다.",
-            "예열된 오븐에서 20-25분간 구워줍니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "파리, 프랑스",
       isFollow: true,
@@ -566,17 +538,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "닭다리살은 먹기 좋은 크기로 자릅니다.",
-            "양배추는 한입 크기로 썰고, 떡은 물에 살짝 불려줍니다.",
-            "고추장, 고춧가루, 간장, 다진 마늘, 설탕, 매실청을 섞어 양념장을 만듭니다.",
-            "닭고기에 양념장을 넣고, 손으로 잘 무쳐 30분간 재워둡니다.",
-            "팬을 뜨겁게 달군 후 양념된 닭고기를 볶다가 양배추와 떡을 넣고 함께 볶습니다.",
-            "모든 재료가 익으면 완성입니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "춘천, 한국",
       isFollow: false,
@@ -616,16 +583,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "갈비는 찬물에 1시간 정도 담가 핏물을 뺍니다.",
-            "배는 갈아서 즙을 냅니다.",
-            "냄비에 물, 간장, 설탕, 배즙, 다진 마늘, L.A갈비를 넣고 중간 불에서 끓입니다.",
-            "무는 큼직하게 썰어 갈비가 반쯤 익었을 때 함께 넣습니다.",
-            "갈비가 부드러워질 때까지 조려줍니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "대구, 한국",
       isFollow: false,
@@ -665,16 +628,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "냄비에 물을 붓고 다진 마늘을 넣고 끓입니다.",
-            "물이 끓으면 콩나물을 넣고 5분간 더 끓입니다.",
-            "콩나물이 익으면 소금으로 간을 합니다.",
-            "그릇에 밥을 담고 끓인 콩나물국을 부어줍니다.",
-            "다진 파를 올려 완성합니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "전라도, 한국",
       isFollow: true,
@@ -714,16 +673,12 @@ class RecipeDataSourceImpl implements RecipeDataSource {
           imageUrl: "https://w7.pngwing.com/pngs/891/45/png-transparent-tomato-tomato-fresh-fruits-thumbnail.png",
         ),
       ],
-      procedure: [
-        ProcedureDto(
-          descriptions: [
-            "오징어는 내장을 제거하고 깨끗이 씻어 적당한 크기로 썰어줍니다.",
-            "양파와 당근은 채썰어 준비합니다.",
-            "고추장, 고춧가루, 간장, 설탕을 섞어 양념장을 만듭니다.",
-            "팬을 달군 후 오징어를 볶다가 양파와 당근을 넣고 함께 볶습니다.",
-            "재료가 어느 정도 익으면 양념장을 넣고 골고루 볶아줍니다."
-          ],
-        ),
+      procedures: [
+        "갈비는 찬물에 1시간 정도 담가 핏물을 빼주세요.",
+        "양념 재료를 모두 섞어 양념장을 만듭니다.",
+        "핏물 뺀 갈비에 양념장을 골고루 발라 30분간 재워둡니다.",
+        "오븐을 180°C로 예열합니다.",
+        "양념한 갈비를 오븐에 넣고 20분간 굽습니다."
       ],
       makeUserLocation: "부산, 한국",
       isFollow: false,

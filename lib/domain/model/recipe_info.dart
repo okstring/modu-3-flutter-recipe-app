@@ -19,7 +19,7 @@ abstract class RecipeInfo with _$RecipeInfo {
 
     required int reviewCount,
     required List<Ingredient> ingredient,
-    required List<Procedure> procedure,
+    required List<String> procedures,
     String? makeUserLocation,
     bool? isFollow,
     required String recipeDeepLink,
@@ -36,7 +36,7 @@ abstract class RecipeInfo with _$RecipeInfo {
     imageUrl: '',
     reviewCount: 0,
     ingredient: [],
-    procedure: [],
+    procedures: [],
     recipeDeepLink: '',
   );
 }
