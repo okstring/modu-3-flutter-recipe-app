@@ -1,10 +1,15 @@
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/routing/routes.dart';
-import 'package:recipe_app/presentation/favorites/favorites_screen.dart';
+import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
+import 'package:recipe_app/data/repository/book_mark_repository_impl.dart';
+import 'package:recipe_app/data/repository/recipe_repository_impl.dart';
+import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/presentation/home/home_screen.dart';
 import 'package:recipe_app/presentation/main/main_screen.dart';
 import 'package:recipe_app/presentation/notifications/notifications_screen.dart';
 import 'package:recipe_app/presentation/profile/profile_screen.dart';
+import 'package:recipe_app/presentation/saved_recipe/saved_recipes_screen.dart';
+import 'package:recipe_app/presentation/saved_recipe/saved_recipes_view_model.dart';
 import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_app/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_app/presentation/splash_screen/view/splash_screen.dart';
@@ -13,10 +18,7 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: Routes.splash,
     routes: [
-      GoRoute(
-        path: Routes.splash,
-        builder: (context, state) => SplashScreen(),
-      ),
+      GoRoute(path: Routes.splash, builder: (context, state) => SplashScreen()),
 
       GoRoute(
         path: Routes.signIn,
@@ -39,7 +41,19 @@ class AppRouter {
           ),
           GoRoute(
             path: Routes.favorites,
-            builder: (context, state) => const FavoritesScreen(),
+            builder:
+                (context, state) => SavedRecipesScreen(
+                  savedRecipesViewModel: SavedRecipesViewModel(
+                    getSavedRecipesUseCase: GetSavedRecipesUseCase(
+                      recipeRepository: RecipeRepositoryImpl(
+                        recipeDataSource: RecipeDataSourceImpl(),
+                      ),
+                      bookMarkRepository: BookMarkRepositoryImpl(
+                        recipeDataSource: RecipeDataSourceImpl(),
+                      ),
+                    ),
+                  ),
+                ),
           ),
           GoRoute(
             path: Routes.notifications,
@@ -54,4 +68,3 @@ class AppRouter {
     ],
   );
 }
-

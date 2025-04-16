@@ -222,7 +222,24 @@ class RecipeDataSourceImpl implements RecipeDataSource {
   ];
 
   @override
-  Future<List<RecipeDto>> fetchSavedRecipes() async {
-    return await Future.value(_mockRecipes);
+  Future<List<RecipeDto>> fetchSavedRecipes({String query = ''}) async {
+    final mockRecipesDto =
+        _mockRecipes
+            .where((e) => query.isNotEmpty ? e.name.contains(query) : true) // 서버 비즈니스 로직
+            .toList();
+    return await Future.value(mockRecipesDto);
+  }
+
+  @override
+  Future<RecipeDto> toggleFavorite(String id) async {
+    final recipesDto = await Future.value(_mockRecipes);
+
+    // 서버 비즈니스 로직
+    final recipeDto = recipesDto.firstWhere((e) => e.id == id);
+    recipeDto.isFavorite = !recipeDto.isFavorite;
+    final index = _mockRecipes.indexOf(recipeDto);
+    _mockRecipes[index] = recipeDto;
+
+    return await Future.value(recipeDto);
   }
 }

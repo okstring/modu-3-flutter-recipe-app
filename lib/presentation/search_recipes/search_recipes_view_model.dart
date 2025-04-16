@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:recipe_app/data/repository/recipe_repository.dart';
+import 'package:recipe_app/domain/model/recipe.dart';
+import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/presentation/search_recipes/filter_search_state.dart';
 import 'package:recipe_app/presentation/search_recipes/search_recipes_main_state.dart';
 import 'package:recipe_app/presentation/utils/debouncer.dart';
 
 class SearchRecipesViewModel with ChangeNotifier {
-  final RecipeRepository _recipeRepository;
+  final GetSavedRecipesUseCase _getSavedRecipesUseCase;
   final Debouncer _debouncer;
 
   SearchRecipesMainState _searchRecipesMainState = const SearchRecipesMainState();
@@ -20,9 +21,9 @@ class SearchRecipesViewModel with ChangeNotifier {
   }
 
   SearchRecipesViewModel({
-    required RecipeRepository recipeRepository,
+    required GetSavedRecipesUseCase getSavedRecipesUseCase,
     Debouncer? debouncer,
-  }) : _recipeRepository = recipeRepository,
+  }) : _getSavedRecipesUseCase = getSavedRecipesUseCase,
        _debouncer = debouncer ?? Debouncer(delay: const Duration(milliseconds: 500));
 
   Future<void> fetchSearchRecipes() async {
@@ -30,7 +31,7 @@ class SearchRecipesViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
-      final savedRecipes = await _recipeRepository.getSavedRecipe(query: '');
+      final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipe(query: '');
       _searchRecipesMainState = searchRecipesMainState.copyWith(searchRecipes: savedRecipes);
     } catch (e) {
       _searchRecipesMainState = searchRecipesMainState.copyWith(errorMessage: e.toString());
@@ -46,7 +47,7 @@ class SearchRecipesViewModel with ChangeNotifier {
       notifyListeners();
 
       try {
-        final savedRecipes = await _recipeRepository.getSavedRecipe(query: query);
+        final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipe(query: query);
         _searchRecipesMainState = searchRecipesMainState.copyWith(searchRecipes: savedRecipes);
       } catch (e) {
         _searchRecipesMainState = searchRecipesMainState.copyWith(errorMessage: e.toString());
