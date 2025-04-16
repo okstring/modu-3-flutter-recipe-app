@@ -4,20 +4,20 @@ import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 
 class MainScreen extends StatelessWidget {
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
-  const MainScreen({super.key, required this.child});
+  const MainScreen({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: child,
+      body: navigationShell,
       bottomNavigationBar: _buildCustomTabBar(context),
     );
   }
 
   Widget _buildCustomTabBar(BuildContext context) {
-    final String location = GoRouterState.of(context).uri.toString();
+    final int currentIndex = navigationShell.currentIndex;
 
     return Container(
       color: AppColors.white,
@@ -43,8 +43,8 @@ class MainScreen extends StatelessWidget {
                   width: 24,
                   height: 24,
                 ),
-                path: Routes.home,
-                isSelected: location == Routes.home,
+                index: 0,
+                isSelected: currentIndex == 0,
               ),
               _buildTabItem(
                 context,
@@ -58,8 +58,8 @@ class MainScreen extends StatelessWidget {
                   width: 24,
                   height: 24,
                 ),
-                path: Routes.favorites,
-                isSelected: location == Routes.favorites,
+                index: 1,
+                isSelected: currentIndex == 1,
               ),
               _buildTabItem(
                 context,
@@ -73,8 +73,8 @@ class MainScreen extends StatelessWidget {
                   width: 24,
                   height: 24,
                 ),
-                path: Routes.notifications,
-                isSelected: location == Routes.notifications,
+                index: 2,
+                isSelected: currentIndex == 2,
               ),
               _buildTabItem(
                 context,
@@ -88,8 +88,8 @@ class MainScreen extends StatelessWidget {
                   width: 24,
                   height: 24,
                 ),
-                path: Routes.profile,
-                isSelected: location == Routes.profile,
+                index: 3,
+                isSelected: currentIndex == 3,
               ),
             ],
           ),
@@ -99,14 +99,14 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _buildTabItem(
-    BuildContext context, {
-    required Image activeImage,
-    required Image inactiveImage,
-    required String path,
-    required bool isSelected,
-  }) {
+      BuildContext context, {
+        required Image activeImage,
+        required Image inactiveImage,
+        required int index,
+        required bool isSelected,
+      }) {
     return GestureDetector(
-      onTap: () => context.go(path),
+      onTap: () => navigationShell.goBranch(index),
       child: isSelected ? activeImage : inactiveImage,
     );
   }
