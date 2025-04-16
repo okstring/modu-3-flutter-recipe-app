@@ -73,20 +73,7 @@ class AppRouter {
           GoRoute(
             path: Routes.favorites,
             builder:
-                (context, state) => SavedRecipesScreen(
-                  savedRecipesViewModel: SavedRecipesViewModel(
-                    getSavedRecipesUseCase: GetSavedRecipesUseCase(
-                      recipeRepository: RecipeRepositoryImpl(
-                        recipeDataSource: RecipeDataSourceImpl(),
-                      ),
-                    ),
-                    toggleFavoriteUseCase: ToggleFavoriteUseCase(
-                      bookMarkRepository: BookMarkRepositoryImpl(
-                        recipeDataSource: RecipeDataSourceImpl(),
-                      ),
-                    ),
-                  ),
-                ),
+                (context, state) => SavedRecipesScreen(),
           ),
           GoRoute(
             path: Routes.notifications,

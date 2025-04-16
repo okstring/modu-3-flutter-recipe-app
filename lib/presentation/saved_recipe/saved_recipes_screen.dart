@@ -9,19 +9,14 @@ import 'package:recipe_app/ui/text_styles.dart';
 class SavedRecipesScreen extends StatefulWidget {
   final SavedRecipesViewModel savedRecipesViewModel;
 
-  const SavedRecipesScreen({super.key, required this.savedRecipesViewModel});
+  SavedRecipesScreen({super.key, SavedRecipesViewModel? savedRecipesViewModel})
+    : savedRecipesViewModel = savedRecipesViewModel ?? SavedRecipesViewModel();
 
   @override
   State<SavedRecipesScreen> createState() => _SavedRecipesScreenState();
 }
 
 class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-    widget.savedRecipesViewModel.getSavedRecipes();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +26,11 @@ class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
         builder: (context, snapshot) {
           if (widget.savedRecipesViewModel.state.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (widget.savedRecipesViewModel.state.isLoading) {
+          } else if (widget.savedRecipesViewModel.state.savedRecipes.isEmpty) {
             return Center(
               child: Text(
                 '저장된 레시피가 없습니다',
-                style: TextStyles.mediumTextRegular(color: AppColors.gray4),
+                style: TextStyles.mediumTextRegular(color: AppColors.black),
                 textAlign: TextAlign.center,
               ),
             );
@@ -64,7 +59,8 @@ class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(vertical: 30),
-                itemCount: widget.savedRecipesViewModel.state.savedRecipes.length,
+                itemCount:
+                    widget.savedRecipesViewModel.state.savedRecipes.length,
                 itemBuilder: (context, index) {
                   final recipe =
                       widget.savedRecipesViewModel.state.savedRecipes[index];
@@ -79,7 +75,9 @@ class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
                       child: FRecipeCard(
                         recipe: recipe,
                         onToggleFavorite: (id) {
-                          widget.savedRecipesViewModel.toggleFavorite(recipe.id);
+                          widget.savedRecipesViewModel.toggleFavorite(
+                            recipe.id,
+                          );
                         },
                       ),
                     ),

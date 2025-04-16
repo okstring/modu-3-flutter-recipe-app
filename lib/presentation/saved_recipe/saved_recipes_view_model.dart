@@ -12,22 +12,26 @@ class SavedRecipesViewModel with ChangeNotifier {
   SavedRecipesState get state => _state;
 
   SavedRecipesViewModel({
-    required GetSavedRecipesUseCase getSavedRecipesUseCase,
-    required ToggleFavoriteUseCase toggleFavoriteUseCase,
-  }) : _getSavedRecipesUseCase = getSavedRecipesUseCase,
-       _toggleFavoriteUseCase = toggleFavoriteUseCase;
+    GetSavedRecipesUseCase? getSavedRecipesUseCase,
+    ToggleFavoriteUseCase? toggleFavoriteUseCase,
+  }) : _getSavedRecipesUseCase =
+           getSavedRecipesUseCase ?? GetSavedRecipesUseCase(),
+       _toggleFavoriteUseCase =
+           toggleFavoriteUseCase ?? ToggleFavoriteUseCase() {
+    getSavedRecipes();
+  }
 
   Future<void> getSavedRecipes() async {
-    _state = state.copyWith(isLoading: true, errorMessage: null);
+    _state = _state.copyWith(isLoading: true, errorMessage: null);
     notifyListeners();
 
     try {
       final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes();
-      _state = state.copyWith(savedRecipes: savedRecipes);
+      _state = _state.copyWith(savedRecipes: savedRecipes);
     } catch (e) {
-      _state = state.copyWith(errorMessage: e.toString());
+      _state = _state.copyWith(errorMessage: e.toString());
     } finally {
-      _state = state.copyWith(isLoading: false);
+      _state = _state.copyWith(isLoading: false);
       notifyListeners();
     }
   }
