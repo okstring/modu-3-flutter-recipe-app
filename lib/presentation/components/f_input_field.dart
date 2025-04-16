@@ -7,6 +7,9 @@ class FInputField extends StatelessWidget {
   final String placeHolder;
   final String value;
   final bool isVisibleSearchIcon;
+  final TextEditingController? searchController;
+  final FocusNode? focusNode;
+  final double? height;
   final void Function(String) onValueChange;
 
   const FInputField({
@@ -16,15 +19,16 @@ class FInputField extends StatelessWidget {
     required this.value,
     required this.isVisibleSearchIcon,
     required this.onValueChange,
+    this.searchController,
+    this.focusNode,
+    this.height = 40,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      constraints: BoxConstraints(
-        minHeight: 40
-      ),
+      constraints: BoxConstraints(minHeight: 40),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -36,9 +40,11 @@ class FInputField extends StatelessWidget {
               style: TextStyles.smallTextRegular(color: AppColors.black),
             ),
 
+          SizedBox(height: 5),
+
           Container(
             width: double.infinity,
-            height: 40,
+            height: height,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               border: Border.all(color: AppColors.gray4, width: 1.5),
@@ -48,24 +54,36 @@ class FInputField extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 isVisibleSearchIcon
-                  ? Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Icon(Icons.search, color: AppColors.gray4, size: 18),
-                  )
-                : const SizedBox.shrink(),
+                    ? Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Icon(
+                        Icons.search,
+                        color: AppColors.gray4,
+                        size: 18,
+                      ),
+                    )
+                    : const SizedBox.shrink(),
 
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: placeHolder,
-                      hintStyle: TextStyles.smallerTextRegular(color: AppColors.gray4),
+                      hintStyle: TextStyles.smallerTextRegular(
+                        color: AppColors.gray4,
+                      ),
                       border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 10,
+                      ),
                       alignLabelWithHint: true,
                       isDense: true,
                     ),
-                    style: TextStyles.smallerTextRegular(color: AppColors.black),
-                    controller: TextEditingController(text: value),
+                    style: TextStyles.smallerTextRegular(
+                      color: AppColors.black,
+                    ),
+                    focusNode: focusNode,
+                    controller: searchController,
                     onChanged: onValueChange,
                     expands: false,
                   ),

@@ -19,53 +19,67 @@ class SearchRecipesScreen extends StatefulWidget {
 }
 
 class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
+  final FocusNode _searchFocusNode = FocusNode();
+  final TextEditingController _searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchFocusNode.dispose();
+    _searchController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     widget.viewModel.fetchSearchRecipes();
     return ListenableBuilder(
       listenable: widget.viewModel,
       builder: (context, snapshot) {
-        return SafeArea(
-          child: Container(
-            padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                Text(
-                  'Search recipes',
-                  style: TextStyles.mediumTextBold(color: AppColors.black),
-                ),
 
-                const SizedBox(height: 17),
-                _buildSearchBarArea(context),
-                const SizedBox(height: 20),
 
-                Row(
-                  children: [
-                    Text(
-                      widget.viewModel.searchRecipesMainState.query.isEmpty ? 'Recent Search' : 'Search Result',
-                      style: TextStyles.mediumTextBold(color: AppColors.black),
-                      textAlign: TextAlign.start,
-                    ),
+        return Scaffold(
+          body: SafeArea(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  Text(
+                    'Search recipes',
+                    style: TextStyles.mediumTextBold(color: AppColors.black),
+                  ),
 
-                    Spacer(),
+                  const SizedBox(height: 17),
+                  _buildSearchBarArea(context),
+                  const SizedBox(height: 20),
 
-                    if (widget.viewModel.searchRecipesMainState.query.isNotEmpty)
+                  Row(
+                    children: [
                       Text(
-                        '${widget.viewModel.searchRecipesMainState.searchRecipes.length} results',
-                        style: TextStyles.smallerTextRegular(color: AppColors.gray3),
+                        widget.viewModel.searchRecipesMainState.query.isEmpty ? 'Recent Search' : 'Search Result',
+                        style: TextStyles.mediumTextBold(color: AppColors.black),
+                        textAlign: TextAlign.start,
                       ),
-                    ]
-                ),
 
-                const SizedBox(height: 20,),
+                      Spacer(),
 
-                RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
-                  print('레시피 누름: ${recipe.name}');
-                })
-              ],
+                      if (widget.viewModel.searchRecipesMainState.query.isNotEmpty)
+                        Text(
+                          '${widget.viewModel.searchRecipesMainState.searchRecipes.length} results',
+                          style: TextStyles.smallerTextRegular(color: AppColors.gray3),
+                        ),
+                      ]
+                  ),
+
+                  const SizedBox(height: 20,),
+
+                  RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
+                    print('레시피 누름: ${recipe.name}');
+                  })
+                ],
+              ),
             ),
           ),
         );
@@ -80,14 +94,13 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
       spacing: 20,
       children: [
         Expanded(
-          //TODO: 타이핑 후 커서 사라짐, 필터 누를 때 리스트 초기화 됨
           child: FInputField(
-            placeHolder: 'Search recipe',
+            placeHolder: 'Search recipe ',
             value: widget.viewModel.searchRecipesMainState.query,
             isVisibleSearchIcon: true,
             onValueChange: (value) {
               widget.viewModel.fetchSearchRecipesByQuery(query: value);
-            },
+            }, searchController: _searchController, focusNode: _searchFocusNode,
           ),
         ),
         FSearchFilterButton(
