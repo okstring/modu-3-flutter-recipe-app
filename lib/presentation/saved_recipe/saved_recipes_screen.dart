@@ -20,7 +20,7 @@ class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
   @override
   void initState() {
     super.initState();
-    widget.savedRecipesViewModel.fetchSavedRecipes();
+    widget.savedRecipesViewModel.getSavedRecipes();
   }
 
   @override

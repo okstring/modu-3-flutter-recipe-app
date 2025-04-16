@@ -17,7 +17,7 @@ class SavedRecipesViewModel with ChangeNotifier {
   }) : _getSavedRecipesUseCase = getSavedRecipesUseCase,
        _toggleFavoriteUseCase = toggleFavoriteUseCase;
 
-  Future<void> fetchSavedRecipes() async {
+  Future<void> getSavedRecipes() async {
     _state = state.copyWith(isLoading: true, errorMessage: null);
     notifyListeners();
 

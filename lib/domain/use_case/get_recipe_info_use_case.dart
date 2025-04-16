@@ -1,4 +1,4 @@
-import 'package:recipe_app/domain/model/recipe.dart';
+import 'package:recipe_app/domain/model/recipe_info.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
 
 class GetRecipeInfoUseCase {
@@ -8,7 +8,7 @@ class GetRecipeInfoUseCase {
     required RecipeRepository recipeRepository,
   }) : _recipeRepository = recipeRepository;
 
-  Future<List<Recipe>> getRecipeInfo({String query = ''}) {
-    return _recipeRepository.getSavedRecipes(query: query);
+  Future<RecipeInfo> getRecipeInfo({required String id}) {
+    return _recipeRepository.getRecipesInfo(id: id);
   }
 }

@@ -55,7 +55,7 @@ void main() {
     );
 
     test('fetchSavedRecipes should load recipes and update state', () async {
-      await viewModel.fetchSavedRecipes();
+      await viewModel.getSavedRecipes();
 
       expect(viewModel.state.isLoading, false);
       expect(viewModel.state.savedRecipes.length, 1);

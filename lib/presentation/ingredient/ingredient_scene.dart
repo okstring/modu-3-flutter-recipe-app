@@ -11,6 +11,13 @@ class IngredientScreen extends StatefulWidget {
 }
 
 class _IngredientScreenState extends State<IngredientScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    widget.viewModel.getRecipesInfo(widget.viewModel.state.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
