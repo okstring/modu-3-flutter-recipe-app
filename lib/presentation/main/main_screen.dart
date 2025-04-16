@@ -10,7 +10,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: child,
+    return Scaffold(
+      body: child,
       bottomNavigationBar: _buildCustomTabBar(context),
     );
   }
@@ -32,29 +33,61 @@ class MainScreen extends StatelessWidget {
             children: [
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/home_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/home_inactive.png', width: 24, height: 24,),
+                activeImage: Image.asset(
+                  'assets/images/home_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/home_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
                 path: Routes.home,
                 isSelected: location == Routes.home,
               ),
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/favorites_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/favorites_inactive.png', width: 24, height: 24,),
+                activeImage: Image.asset(
+                  'assets/images/favorites_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/favorites_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
                 path: Routes.favorites,
                 isSelected: location == Routes.favorites,
               ),
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/notifications_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/notifications_inactive.png', width: 24, height: 24,),
+                activeImage: Image.asset(
+                  'assets/images/notifications_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/notifications_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
                 path: Routes.notifications,
                 isSelected: location == Routes.notifications,
               ),
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/profile_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/profile_inactive.png', width: 24, height: 24,),
+                activeImage: Image.asset(
+                  'assets/images/profile_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/profile_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
                 path: Routes.profile,
                 isSelected: location == Routes.profile,
               ),
@@ -66,15 +99,15 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _buildTabItem(
-      BuildContext context, {
-        required Image activeImage,
-        required Image inactiveImage,
-        required String path,
-        required bool isSelected,
-      }) {
+    BuildContext context, {
+    required Image activeImage,
+    required Image inactiveImage,
+    required String path,
+    required bool isSelected,
+  }) {
     return GestureDetector(
-        onTap: () => context.go(path),
-        child: isSelected ? activeImage : inactiveImage
+      onTap: () => context.go(path),
+      child: isSelected ? activeImage : inactiveImage,
     );
   }
 }
