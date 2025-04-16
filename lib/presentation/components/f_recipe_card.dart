@@ -5,12 +5,14 @@ import 'package:recipe_app/ui/text_styles.dart';
 
 class FRecipeCard extends StatelessWidget {
   final Recipe recipe;
+  final bool isVisibleTitle;
   final void Function(String id) onToggleFavorite;
 
   const FRecipeCard({
     super.key,
     required this.recipe,
     required this.onToggleFavorite,
+    this.isVisibleTitle = true,
   });
 
   @override
@@ -61,17 +63,20 @@ class FRecipeCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      _buildRecipeNameText(),
-                      _buildMakeUserNameText(),
-                    ],
+                if (isVisibleTitle)
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        _buildRecipeNameText(),
+                        _buildMakeUserNameText(),
+                      ],
+                    ),
                   ),
-                ),
+
+                Spacer(),
 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
