@@ -1,15 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
+import 'package:recipe_app/domain/use_case/toggle_favorite_use_case.dart';
 import 'package:recipe_app/presentation/saved_recipe/saved_recipes_state.dart';
 
 class SavedRecipesViewModel with ChangeNotifier {
   final GetSavedRecipesUseCase _getSavedRecipesUseCase;
+  final ToggleFavoriteUseCase _toggleFavoriteUseCase;
+
   SavedRecipesState _state = SavedRecipesState();
+
   SavedRecipesState get state => _state;
 
   SavedRecipesViewModel({
     required GetSavedRecipesUseCase getSavedRecipesUseCase,
-  }) : _getSavedRecipesUseCase = getSavedRecipesUseCase;
+    required ToggleFavoriteUseCase toggleFavoriteUseCase,
+  }) : _getSavedRecipesUseCase = getSavedRecipesUseCase,
+       _toggleFavoriteUseCase = toggleFavoriteUseCase;
 
   Future<void> fetchSavedRecipes() async {
     _state = state.copyWith(isLoading: true, errorMessage: null);
@@ -26,15 +32,19 @@ class SavedRecipesViewModel with ChangeNotifier {
     }
   }
 
-
   Future<void> toggleFavorite(String id) async {
     _state = state.copyWith(isLoading: true, errorMessage: null);
     notifyListeners();
 
     try {
-      final toggledRecipe = await _getSavedRecipesUseCase.toggleFavorite(id);
+      final toggledRecipe = await _toggleFavoriteUseCase.toggleFavorite(id);
       final index = state.savedRecipes.indexWhere((recipe) => recipe.id == id);
-      _state = state.copyWith(savedRecipes: List.from(state.savedRecipes)..removeAt(index)..insert(index, toggledRecipe));
+      _state = state.copyWith(
+        savedRecipes:
+            List.from(state.savedRecipes)
+              ..removeAt(index)
+              ..insert(index, toggledRecipe),
+      );
     } catch (e) {
       _state = state.copyWith(errorMessage: e.toString());
     } finally {
