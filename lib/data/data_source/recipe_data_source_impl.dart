@@ -696,22 +696,31 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
   @override
   Future<RecipeDto> toggleFavorite(String id) async {
-    final recipesDto = await Future.value(_mockRecipes);
+    final recipesDto = _mockRecipes;
 
-    // 서버 비즈니스 로직
-    final recipeDto = recipesDto.firstWhere((e) => e.id == id);
-    recipeDto.isFavorite = !recipeDto.isFavorite;
-    final index = _mockRecipes.indexOf(recipeDto);
-    _mockRecipes[index] = recipeDto;
+    try {
+      // 서버 비즈니스 로직
+      final recipeDto = recipesDto.firstWhere((e) => e.id == id);
+      recipeDto.isFavorite = !recipeDto.isFavorite;
+      final index = _mockRecipes.indexOf(recipeDto);
+      _mockRecipes[index] = recipeDto;
 
-    return await Future.value(recipeDto);
+      return await Future.value(recipeDto);
+    } catch (e) {
+      throw Exception('레시피 ID를 찾을 수 없습니다. $id, error: ${e.toString()}');
+    }
+
   }
 
   @override
   Future<RecipeInfoDto> fetchRecipeInfo({required String id}) async {
-    // 서버 비즈니스 로직
-    final mockRecipeInfoDto = await Future.value(_mockRecipesInfo.firstWhere((e) => e.id == id));
+    try {
+      // 서버 비즈니스 로직
+      final mockRecipeInfoDto = await Future.value(_mockRecipesInfo.firstWhere((e) => e.id == id));
 
-    return mockRecipeInfoDto;
+      return mockRecipeInfoDto;
+    } catch (e) {
+      throw Exception('레시피 ID를 찾을 수 없습니다. $id, error: ${e.toString()}');
+    }
   }
 }
