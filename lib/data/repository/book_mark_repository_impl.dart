@@ -4,10 +4,10 @@ import 'package:recipe_app/data/mapper/recipe_mapper.dart';
 import 'package:recipe_app/domain/repository/book_mark_repository.dart';
 
 
-class BookMarkRepositoryImpl implements BookMarkRepository {
+class BookmarkRepositoryImpl implements BookmarkRepository {
   final RecipeDataSource _recipeDataSource;
 
-  BookMarkRepositoryImpl({required RecipeDataSource recipeDataSource})
+  BookmarkRepositoryImpl({required RecipeDataSource recipeDataSource})
     : _recipeDataSource = recipeDataSource;
 
   @override

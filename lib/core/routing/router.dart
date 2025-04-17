@@ -87,7 +87,7 @@ class AppRouter {
                           ),
                         ),
                         toggleFavoriteUseCase: ToggleFavoriteUseCase(
-                          bookMarkRepository: BookMarkRepositoryImpl(
+                          bookMarkRepository: BookmarkRepositoryImpl(
                             recipeDataSource: RecipeDataSourceImpl(),
                           ),
                         ),

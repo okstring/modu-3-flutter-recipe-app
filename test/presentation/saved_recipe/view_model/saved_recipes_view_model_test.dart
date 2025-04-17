@@ -48,7 +48,7 @@ void main() {
         recipeRepository: mockRepository,
       ),
       toggleFavoriteUseCase: ToggleFavoriteUseCase(
-        bookMarkRepository: BookMarkRepositoryImpl(
+        bookMarkRepository: BookmarkRepositoryImpl(
           recipeDataSource: RecipeDataSourceImpl(),
         ),
       ),
