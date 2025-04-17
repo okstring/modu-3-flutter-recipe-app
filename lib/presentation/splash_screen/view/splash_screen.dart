@@ -4,8 +4,8 @@ import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
 import 'package:recipe_app/data/repository/recipe_repository_impl.dart';
 import 'package:recipe_app/presentation/components/f_medium_button.dart';
-import 'package:recipe_app/presentation/saved_recipe/view/saved_recipes_screen.dart';
-import 'package:recipe_app/presentation/saved_recipe/view_model/saved_recipes_view_model.dart';
+import 'package:recipe_app/presentation/saved_recipe/saved_recipes_screen.dart';
+import 'package:recipe_app/presentation/saved_recipe/saved_recipes_view_model.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
 class SplashScreen extends StatelessWidget {

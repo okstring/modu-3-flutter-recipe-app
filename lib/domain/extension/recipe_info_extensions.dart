@@ -1,7 +1,7 @@
-import 'package:recipe_app/data/dto/recipe_dto.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
+import 'package:recipe_app/domain/model/recipe_info.dart';
 
-extension RecipeMapper on RecipeDto {
+extension RecipeInfoExtension on RecipeInfo {
   Recipe toRecipe() {
     return Recipe(
       id: id,
@@ -11,6 +11,7 @@ extension RecipeMapper on RecipeDto {
       rate: rate,
       makeUserName: makeUserName,
       makeUserImageUrl: makeUserImageUrl,
+      videoUrl: videoUrl,
       imageUrl: imageUrl,
     );
   }

@@ -18,7 +18,6 @@ void main() {
       final FTabs fTabs = FTabs(
         labels: labels,
         onValueChange: onValueChange,
-        selectedIndex: 0,
       );
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: fTabs)));
 

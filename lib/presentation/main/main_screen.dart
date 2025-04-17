@@ -4,19 +4,20 @@ import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 
 class MainScreen extends StatelessWidget {
-  final Widget child;
+  final StatefulNavigationShell navigationShell;
 
-  const MainScreen({super.key, required this.child});
+  const MainScreen({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: child,
+    return Scaffold(
+      body: navigationShell,
       bottomNavigationBar: _buildCustomTabBar(context),
     );
   }
 
   Widget _buildCustomTabBar(BuildContext context) {
-    final String location = GoRouterState.of(context).uri.toString();
+    final int currentIndex = navigationShell.currentIndex;
 
     return Container(
       color: AppColors.white,
@@ -32,31 +33,63 @@ class MainScreen extends StatelessWidget {
             children: [
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/home_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/home_inactive.png', width: 24, height: 24,),
-                path: Routes.home,
-                isSelected: location == Routes.home,
+                activeImage: Image.asset(
+                  'assets/images/home_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/home_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
+                index: 0,
+                isSelected: currentIndex == 0,
               ),
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/favorites_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/favorites_inactive.png', width: 24, height: 24,),
-                path: Routes.favorites,
-                isSelected: location == Routes.favorites,
+                activeImage: Image.asset(
+                  'assets/images/favorites_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/favorites_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
+                index: 1,
+                isSelected: currentIndex == 1,
               ),
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/notifications_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/notifications_inactive.png', width: 24, height: 24,),
-                path: Routes.notifications,
-                isSelected: location == Routes.notifications,
+                activeImage: Image.asset(
+                  'assets/images/notifications_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/notifications_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
+                index: 2,
+                isSelected: currentIndex == 2,
               ),
               _buildTabItem(
                 context,
-                activeImage: Image.asset('assets/images/profile_active.png', width: 24, height: 24,),
-                inactiveImage: Image.asset('assets/images/profile_inactive.png', width: 24, height: 24,),
-                path: Routes.profile,
-                isSelected: location == Routes.profile,
+                activeImage: Image.asset(
+                  'assets/images/profile_active.png',
+                  width: 26,
+                  height: 26,
+                ),
+                inactiveImage: Image.asset(
+                  'assets/images/profile_inactive.png',
+                  width: 24,
+                  height: 24,
+                ),
+                index: 3,
+                isSelected: currentIndex == 3,
               ),
             ],
           ),
@@ -69,12 +102,12 @@ class MainScreen extends StatelessWidget {
       BuildContext context, {
         required Image activeImage,
         required Image inactiveImage,
-        required String path,
+        required int index,
         required bool isSelected,
       }) {
     return GestureDetector(
-        onTap: () => context.go(path),
-        child: isSelected ? activeImage : inactiveImage
+      onTap: () => navigationShell.goBranch(index),
+      child: isSelected ? activeImage : inactiveImage,
     );
   }
 }

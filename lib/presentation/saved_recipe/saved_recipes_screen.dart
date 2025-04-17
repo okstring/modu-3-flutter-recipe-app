@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/presentation/components/f_recipe_card.dart';
-import 'package:recipe_app/presentation/saved_recipe/view_model/saved_recipes_view_model.dart';
+import 'package:recipe_app/presentation/saved_recipe/saved_recipes_view_model.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
@@ -14,19 +16,20 @@ class SavedRecipesScreen extends StatefulWidget {
 }
 
 class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListenableBuilder(
         listenable: widget.savedRecipesViewModel,
         builder: (context, snapshot) {
-          if (widget.savedRecipesViewModel.isLoading) {
+          if (widget.savedRecipesViewModel.state.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (widget.savedRecipesViewModel.errorMessage != null) {
+          } else if (widget.savedRecipesViewModel.state.savedRecipes.isEmpty) {
             return Center(
               child: Text(
                 '저장된 레시피가 없습니다',
-                style: TextStyles.mediumTextRegular(color: AppColors.gray4),
+                style: TextStyles.mediumTextRegular(color: AppColors.black),
                 textAlign: TextAlign.center,
               ),
             );
@@ -55,13 +58,28 @@ class _SavedRecipesScreenState extends State<SavedRecipesScreen> {
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(vertical: 30),
-                itemCount: widget.savedRecipesViewModel.savedRecipes.length,
+                itemCount:
+                    widget.savedRecipesViewModel.state.savedRecipes.length,
                 itemBuilder: (context, index) {
                   final recipe =
-                      widget.savedRecipesViewModel.savedRecipes[index];
+                      widget.savedRecipesViewModel.state.savedRecipes[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: FRecipeCard(recipe: recipe),
+                    child: GestureDetector(
+                      onTap: () {
+                        final basePath = Routes.ingredient.split('/:')[0];
+                        print('$basePath/${recipe.id}');
+                        context.push('$basePath/${recipe.id}');
+                      },
+                      child: FRecipeCard(
+                        recipe: recipe,
+                        onToggleFavorite: (id) {
+                          widget.savedRecipesViewModel.toggleFavorite(
+                            recipe.id,
+                          );
+                        },
+                      ),
+                    ),
                   );
                 },
               ),

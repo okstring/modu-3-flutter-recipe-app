@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/data/model/recipe.dart';
+import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
 class FRecipeCard extends StatelessWidget {
   final Recipe recipe;
+  final bool isVisibleTitle;
+  final void Function(String id) onToggleFavorite;
 
-  const FRecipeCard({super.key, required this.recipe});
+  const FRecipeCard({
+    super.key,
+    required this.recipe,
+    required this.onToggleFavorite,
+    this.isVisibleTitle = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +33,11 @@ class FRecipeCard extends StatelessWidget {
                 }
                 return Center(
                   child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                        : null,
+                    value:
+                        loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
                   ),
                 );
               },
@@ -54,17 +63,20 @@ class FRecipeCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      _buildRecipeNameText(),
-                      _buildMakeUserNameText(),
-                    ],
+                if (isVisibleTitle)
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        _buildRecipeNameText(),
+                        _buildMakeUserNameText(),
+                      ],
+                    ),
                   ),
-                ),
+
+                Spacer(),
 
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -92,19 +104,31 @@ class FRecipeCard extends StatelessWidget {
     );
   }
 
-  Container _buildBookMarkButton() {
-    return Container(
-      width: 24,
-      height: 24,
-      decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.white),
-      child:
-          recipe.isFavorite
-              ? const Icon(Icons.bookmark, size: 16, color: AppColors.primary80)
-              : const Icon(
-                Icons.bookmark_border,
-                size: 16,
-                color: AppColors.primary80,
-              ),
+  Widget _buildBookMarkButton() {
+    return GestureDetector(
+      onTap: () {
+        onToggleFavorite(recipe.id);
+      },
+      child: Container(
+        width: 24,
+        height: 24,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors.white,
+        ),
+        child:
+            recipe.isFavorite
+                ? const Icon(
+                  Icons.bookmark,
+                  size: 16,
+                  color: AppColors.primary80,
+                )
+                : const Icon(
+                  Icons.bookmark_border,
+                  size: 16,
+                  color: AppColors.primary80,
+                ),
+      ),
     );
   }
 
@@ -135,7 +159,10 @@ class FRecipeCard extends StatelessWidget {
           const Icon(Icons.star, size: 11, color: AppColors.rating),
           Text(
             '${recipe.rate}',
-            style: TextStyles.smallerTextRegular(color: AppColors.black, fontSize: 8),
+            style: TextStyles.smallerTextRegular(
+              color: AppColors.black,
+              fontSize: 8,
+            ),
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:recipe_app/data/model/type/category_filter_type.dart';
-import 'package:recipe_app/data/model/type/rate_type.dart';
-import 'package:recipe_app/data/model/type/time_filter_type.dart';
+import 'package:recipe_app/domain/model/type/category_filter_type.dart';
+import 'package:recipe_app/domain/model/type/rate_type.dart';
+import 'package:recipe_app/domain/model/type/time_filter_type.dart';
 
 part 'filter_search_state.freezed.dart';
 
