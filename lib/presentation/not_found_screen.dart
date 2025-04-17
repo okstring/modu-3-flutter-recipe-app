@@ -20,7 +20,7 @@ class NotFoundScreen extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               '페이지를 찾을 수 없습니다',
-              style: TextStyles.mediumTextBold(color: AppColors.black)
+              style: TextStyles.mediumTextBold(color: AppColors.black),
             ),
             SizedBox(height: 32),
             ElevatedButton.icon(

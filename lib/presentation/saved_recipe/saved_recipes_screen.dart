@@ -9,8 +9,7 @@ import 'package:recipe_app/ui/text_styles.dart';
 class SavedRecipesScreen extends StatefulWidget {
   final SavedRecipesViewModel savedRecipesViewModel;
 
-  SavedRecipesScreen({super.key, SavedRecipesViewModel? savedRecipesViewModel})
-    : savedRecipesViewModel = savedRecipesViewModel ?? SavedRecipesViewModel();
+  const SavedRecipesScreen({super.key, required this.savedRecipesViewModel});
 
   @override
   State<SavedRecipesScreen> createState() => _SavedRecipesScreenState();

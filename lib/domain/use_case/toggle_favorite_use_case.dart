@@ -5,8 +5,8 @@ import 'package:recipe_app/domain/repository/book_mark_repository.dart';
 class ToggleFavoriteUseCase {
   final BookMarkRepository _bookMarkRepository;
 
-  ToggleFavoriteUseCase({BookMarkRepository? bookMarkRepository})
-    : _bookMarkRepository = bookMarkRepository ?? BookMarkRepositoryImpl();
+  ToggleFavoriteUseCase({required BookMarkRepository bookMarkRepository})
+    : _bookMarkRepository = bookMarkRepository;
 
   Future<Recipe> toggleFavorite(String id) {
     return _bookMarkRepository.toggleFavorite(id);

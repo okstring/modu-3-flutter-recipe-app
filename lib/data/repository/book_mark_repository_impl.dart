@@ -1,15 +1,14 @@
 import 'package:recipe_app/data/data_source/recipe_data_source.dart';
-import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/data/mapper/recipe_mapper.dart';
+import 'package:recipe_app/domain/repository/book_mark_repository.dart';
 
-import '../../domain/repository/book_mark_repository.dart';
 
 class BookMarkRepositoryImpl implements BookMarkRepository {
   final RecipeDataSource _recipeDataSource;
 
-  BookMarkRepositoryImpl({RecipeDataSource? recipeDataSource})
-    : _recipeDataSource = recipeDataSource ?? RecipeDataSourceImpl();
+  BookMarkRepositoryImpl({required RecipeDataSource recipeDataSource})
+    : _recipeDataSource = recipeDataSource;
 
   @override
   Future<Recipe> toggleFavorite(String id) async {

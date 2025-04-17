@@ -12,12 +12,10 @@ class SavedRecipesViewModel with ChangeNotifier {
   SavedRecipesState get state => _state;
 
   SavedRecipesViewModel({
-    GetSavedRecipesUseCase? getSavedRecipesUseCase,
-    ToggleFavoriteUseCase? toggleFavoriteUseCase,
-  }) : _getSavedRecipesUseCase =
-           getSavedRecipesUseCase ?? GetSavedRecipesUseCase(),
-       _toggleFavoriteUseCase =
-           toggleFavoriteUseCase ?? ToggleFavoriteUseCase() {
+    required GetSavedRecipesUseCase getSavedRecipesUseCase,
+    required ToggleFavoriteUseCase toggleFavoriteUseCase,
+  }) : _getSavedRecipesUseCase = getSavedRecipesUseCase,
+       _toggleFavoriteUseCase = toggleFavoriteUseCase {
     getSavedRecipes();
   }
 
