@@ -151,6 +151,14 @@ class _IngredientScreenState extends State<IngredientScreen> {
               }
               return SizedBox(width: 40, height: 40);
             },
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                width: 40,
+                height: 40,
+                color: AppColors.gray2,
+                child: const Icon(Icons.person, color: AppColors.gray4),
+              );
+            },
           ),
         ),
 
