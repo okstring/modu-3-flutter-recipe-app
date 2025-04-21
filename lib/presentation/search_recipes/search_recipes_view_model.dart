@@ -46,7 +46,7 @@ class SearchRecipesViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
-      final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(
+      final searchedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(
         query: _searchRecipesMainState.query,
         timeFilterType: _filterSearchState.selectedTimeFilterType,
         rateType: _filterSearchState.selectedRateType,
@@ -54,8 +54,10 @@ class SearchRecipesViewModel with ChangeNotifier {
       );
 
       _searchRecipesMainState = searchRecipesMainState.copyWith(
-        searchRecipes: savedRecipes,
+        searchRecipes: searchedRecipes,
       );
+
+      saveRecentRecipes(searchedRecipes);
     } catch (e) {
       _searchRecipesMainState = searchRecipesMainState.copyWith(
         errorMessage: e.toString(),
@@ -83,7 +85,7 @@ class SearchRecipesViewModel with ChangeNotifier {
       }
 
       try {
-        final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(
+        final searchedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(
           query: query,
           timeFilterType: _filterSearchState.selectedTimeFilterType,
           rateType: _filterSearchState.selectedRateType,
@@ -91,10 +93,10 @@ class SearchRecipesViewModel with ChangeNotifier {
         );
 
         _searchRecipesMainState = searchRecipesMainState.copyWith(
-          searchRecipes: savedRecipes,
+          searchRecipes: searchedRecipes,
         );
 
-        saveRecentRecipes(savedRecipes);
+        saveRecentRecipes(searchedRecipes);
       } catch (e) {
         _searchRecipesMainState = searchRecipesMainState.copyWith(
           errorMessage: e.toString(),
