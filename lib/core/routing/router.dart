@@ -39,9 +39,7 @@ class AppRouter {
         path: Routes.ingredient,
         builder: (context, state) {
           try {
-            final id =
-                state.pathParameters[RoutesParameters
-                    .ingredientRecipeIdParameter]!;
+            final id = state.pathParameters[RoutesParameters.ingredientRecipeIdParameter]!;
             return IngredientScreen(
               viewModel: getIt<IngredientViewModel>(param1: id),
             );
