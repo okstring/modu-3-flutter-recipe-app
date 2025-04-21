@@ -17,10 +17,8 @@ class SplashViewModel with ChangeNotifier {
 
   void getSettings() async {
     try {
-      final settingsString = await _throwWhenSettingsInfoUseCase.getSettings();
-      print(settingsString);
+      final _ = await _throwWhenSettingsInfoUseCase.getSettings();
     } catch (e, stackTrace) {
-      // print(stackTrace);
       _eventController.add(SplashEvent.showErrorMessage(e.toString()));
     }
   }
