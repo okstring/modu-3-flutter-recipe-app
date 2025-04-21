@@ -22,4 +22,10 @@ class SplashViewModel with ChangeNotifier {
       _eventController.add(SplashEvent.showErrorMessage(e.toString()));
     }
   }
+
+  @override
+  void dispose() {
+    _eventController.close();
+    super.dispose();
+  }
 }

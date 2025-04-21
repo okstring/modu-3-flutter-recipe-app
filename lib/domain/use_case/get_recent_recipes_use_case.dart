@@ -7,7 +7,7 @@ class GetRecentRecipesUseCase {
   GetRecentRecipesUseCase({required RecipeRepository recipeRepository})
       : _recipeRepository = recipeRepository;
 
-  Future<List<Recipe>> getSavedRecipes() async {
+  Future<List<Recipe>> getRecentRecipes() async {
     return await _recipeRepository.getSavedRecentRecipes();
   }
 }

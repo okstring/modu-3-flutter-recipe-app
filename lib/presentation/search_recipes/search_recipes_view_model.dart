@@ -118,6 +118,7 @@ class SearchRecipesViewModel with ChangeNotifier {
       _searchRecipesMainState = searchRecipesMainState.copyWith(
         errorMessage: e.toString(),
       );
+      notifyListeners();
     }
   }
 
@@ -130,7 +131,7 @@ class SearchRecipesViewModel with ChangeNotifier {
     notifyListeners();
 
     try {
-      final savedRecentRecipes = await _getRecentRecipesUseCase.getSavedRecipes();
+      final savedRecentRecipes = await _getRecentRecipesUseCase.getRecentRecipes();
       _searchRecipesMainState = searchRecipesMainState.copyWith(
         searchRecipes: savedRecentRecipes,
       );
