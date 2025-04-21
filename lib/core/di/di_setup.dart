@@ -35,7 +35,7 @@ void diSetup() {
     BookmarkRepositoryImpl(recipeDataSource: getIt()),
   );
   getIt.registerSingleton<SettingsRepository>(
-    SettingsRepositoryImpl(settingsDataSource: getIt<SettingsDataSource>())
+    SettingsRepositoryImpl(settingsDataSource: getIt<SettingsDataSource>()),
   );
 
   // UseCase
@@ -49,7 +49,9 @@ void diSetup() {
     GetRecipeInfoUseCase(recipeRepository: getIt()),
   );
   getIt.registerSingleton<ThrowWhenSettingsInfoUseCase>(
-    ThrowWhenSettingsInfoUseCase(settingsRepository: getIt<SettingsRepository>())
+    ThrowWhenSettingsInfoUseCase(
+      settingsRepository: getIt<SettingsRepository>(),
+    ),
   );
 
   // Util
@@ -59,7 +61,7 @@ void diSetup() {
 
   // ViewModel
   getIt.registerFactory<SplashViewModel>(
-        () => SplashViewModel(
+    () => SplashViewModel(
       throwWhenSettingsInfoUseCase: getIt<ThrowWhenSettingsInfoUseCase>(),
     ),
   );
