@@ -164,7 +164,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
         FSearchFilterButton(
           voidCallback: () {
             _buildShowModalBottomSheet(context, (state) {
-              widget.viewModel.filterSearchState = state.copyWith();
+              widget.viewModel.applyFilters(state.copyWith());
             });
           },
         ),
@@ -292,7 +292,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                 FSmallButton(
                   text: 'Filter',
                   voidCallback: () {
-                    onFilterApply(filterSearchState);
+                    widget.viewModel.applyFilters(filterSearchState);
                     Navigator.pop(context);
                   },
                 ),

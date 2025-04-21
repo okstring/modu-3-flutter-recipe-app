@@ -22,9 +22,10 @@ class SearchRecipesViewModel with ChangeNotifier {
 
   FilterSearchState get filterSearchState => _filterSearchState;
 
-  set filterSearchState(FilterSearchState value) {
-    _filterSearchState = value.copyWith();
-    notifyListeners();
+  void applyFilters(FilterSearchState newFilters) {
+    _filterSearchState = newFilters;
+
+    fetchSearchRecipesWithFilters();
   }
 
   SearchRecipesViewModel({
@@ -37,7 +38,7 @@ class SearchRecipesViewModel with ChangeNotifier {
        _saveRecentRecipesUseCase = saveRecentRecipesUseCase,
        _debouncer = debouncer;
 
-  Future<void> fetchSearchRecipes() async {
+  Future<void> fetchSearchRecipesWithFilters() async {
     _searchRecipesMainState = searchRecipesMainState.copyWith(
       isLoading: true,
       errorMessage: null,
@@ -46,8 +47,12 @@ class SearchRecipesViewModel with ChangeNotifier {
 
     try {
       final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(
-        query: '',
+        query: _searchRecipesMainState.query,
+        timeFilterType: _filterSearchState.selectedTimeFilterType,
+        rateType: _filterSearchState.selectedRateType,
+        categoryFilterType: _filterSearchState.selectedCategoryFilterType,
       );
+
       _searchRecipesMainState = searchRecipesMainState.copyWith(
         searchRecipes: savedRecipes,
       );
@@ -80,7 +85,11 @@ class SearchRecipesViewModel with ChangeNotifier {
       try {
         final savedRecipes = await _getSavedRecipesUseCase.getSavedRecipes(
           query: query,
+          timeFilterType: _filterSearchState.selectedTimeFilterType,
+          rateType: _filterSearchState.selectedRateType,
+          categoryFilterType: _filterSearchState.selectedCategoryFilterType,
         );
+
         _searchRecipesMainState = searchRecipesMainState.copyWith(
           searchRecipes: savedRecipes,
         );

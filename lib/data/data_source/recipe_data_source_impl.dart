@@ -2,6 +2,9 @@ import 'package:recipe_app/data/data_source/recipe_data_source.dart';
 import 'package:recipe_app/data/dto/ingredient_dto.dart';
 import 'package:recipe_app/data/dto/recipe_dto.dart';
 import 'package:recipe_app/data/dto/recipe_info_dto.dart';
+import 'package:recipe_app/domain/model/type/category_filter_type.dart';
+import 'package:recipe_app/domain/model/type/rate_type.dart';
+import 'package:recipe_app/domain/model/type/time_filter_type.dart';
 
 
 class RecipeDataSourceImpl implements RecipeDataSource {
@@ -704,12 +707,52 @@ class RecipeDataSourceImpl implements RecipeDataSource {
   ];
 
   @override
-  Future<List<RecipeDto>> fetchSavedRecipes({String query = ''}) async {
-    final mockRecipesDto =
-        _mockRecipes
-            .where((e) => query.isNotEmpty ? e.name.contains(query) : true) // 서버 비즈니스 로직
-            .toList();
-    return await Future.value(mockRecipesDto);
+  Future<List<RecipeDto>> fetchSavedRecipes({
+    String query = '',
+    TimeFilterType? timeFilterType,
+    RateType? rateType,
+    CategoryFilterType? categoryFilterType,
+  }) async {
+    // 기본 쿼리 필터링
+    var filteredRecipes = _mockRecipes.where((e) =>
+    query.isEmpty || e.name.toLowerCase().contains(query.toLowerCase())
+    ).toList();
+
+    // 시간 필터링
+    if (timeFilterType != null && timeFilterType != TimeFilterType.all) {
+      filteredRecipes = filteredRecipes.where((recipe) {
+        switch (timeFilterType) {
+          case TimeFilterType.newest:
+            return DateTime.parse(recipe.createdAt).isAfter(
+                DateTime.now().subtract(const Duration(days: 7))
+            );
+          case TimeFilterType.oldest:
+            return DateTime.parse(recipe.createdAt).isBefore(
+                DateTime.now().subtract(const Duration(days: 30))
+            );
+          case TimeFilterType.popularity:
+            return recipe.rate > 4.0; // 인기도 기준 (높은 평점)
+          default:
+            return true;
+        }
+      }).toList();
+    }
+
+    // 평점 필터링
+    if (rateType != null && rateType != RateType.one) {
+      filteredRecipes = filteredRecipes.where((recipe) {
+        return recipe.rate >= rateType.rate;
+      }).toList();
+    }
+
+    // 카테고리 필터링
+    if (categoryFilterType != null && categoryFilterType != CategoryFilterType.all) {
+      filteredRecipes = filteredRecipes.where((recipe) {
+        return recipe.category.toLowerCase() == categoryFilterType.name.toLowerCase();
+      }).toList();
+    }
+
+    return await Future.value(filteredRecipes);
   }
 
   @override
