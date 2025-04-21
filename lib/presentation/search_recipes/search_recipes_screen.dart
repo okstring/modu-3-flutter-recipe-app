@@ -40,8 +40,6 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
     return ListenableBuilder(
       listenable: widget.viewModel,
       builder: (context, snapshot) {
-
-
         return Scaffold(
           body: SafeArea(
             child: Container(
@@ -63,33 +61,61 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                   Row(
                     children: [
                       Text(
-                        widget.viewModel.searchRecipesMainState.query.isEmpty ? 'Recent Search' : 'Search Result',
-                        style: TextStyles.mediumTextBold(color: AppColors.black),
+                        widget.viewModel.searchRecipesMainState.query.isEmpty
+                            ? 'Recent Search'
+                            : 'Search Result',
+                        style: TextStyles.mediumTextBold(
+                          color: AppColors.black,
+                        ),
                         textAlign: TextAlign.start,
                       ),
 
                       Spacer(),
 
-                      if (widget.viewModel.searchRecipesMainState.query.isNotEmpty)
+                      if (widget
+                          .viewModel
+                          .searchRecipesMainState
+                          .query
+                          .isNotEmpty)
                         Text(
                           '${widget.viewModel.searchRecipesMainState.searchRecipes.length} results',
-                          style: TextStyles.smallerTextRegular(color: AppColors.gray3),
+                          style: TextStyles.smallerTextRegular(
+                            color: AppColors.gray3,
+                          ),
                         ),
-                      ]
-
+                    ],
                   ),
 
-                  const SizedBox(height: 20,),
+                  const SizedBox(height: 20),
 
-                  RecipeGridView(viewModel: widget.viewModel, onRecipeTap: (recipe) {
-                    print('레시피 누름: ${recipe.name}');
-                  })
+                  if (widget
+                      .viewModel
+                      .searchRecipesMainState
+                      .searchRecipes
+                      .isEmpty)
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          '레시피가 없습니다.',
+                          style: TextStyles.mediumTextRegular(
+                            color: AppColors.black,
+                          ),
+                        ),
+                      ),
+                    )
+                  else
+                    RecipeGridView(
+                      viewModel: widget.viewModel,
+                      onRecipeTap: (recipe) {
+                        print('레시피 누름: ${recipe.name}');
+                      },
+                    ),
                 ],
               ),
             ),
           ),
         );
-      }
+      },
     );
   }
 
@@ -106,7 +132,9 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
             isVisibleSearchIcon: true,
             onValueChange: (value) {
               widget.viewModel.fetchSearchRecipesByQuery(query: value);
-            }, searchController: _searchController, focusNode: _searchFocusNode,
+            },
+            searchController: _searchController,
+            focusNode: _searchFocusNode,
           ),
         ),
         FSearchFilterButton(
@@ -121,7 +149,10 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
     );
   }
 
-  Future<dynamic> _buildShowModalBottomSheet(BuildContext context, void Function(FilterSearchState) onFilterApply) {
+  Future<dynamic> _buildShowModalBottomSheet(
+    BuildContext context,
+    void Function(FilterSearchState) onFilterApply,
+  ) {
     FilterSearchState filterSearchState = FilterSearchState();
 
     return showModalBottomSheet(
@@ -156,16 +187,21 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                 IntrinsicHeight(
                   child: FFilterButtons(
                     allFilters:
-                    filterSearchState.timeFilterTypes.map((e) => e.name).toList(),
+                        filterSearchState.timeFilterTypes
+                            .map((e) => e.name)
+                            .toList(),
                     onTap: (index) {
                       setState(() {
                         filterSearchState = filterSearchState.copyWith(
-                          selectedTimeFilterType: filterSearchState.timeFilterTypes[index],
+                          selectedTimeFilterType:
+                              filterSearchState.timeFilterTypes[index],
                         );
                       });
                     },
                     hasStars:
-                    filterSearchState.timeFilterTypes.map((e) => e.hasStar).toList(),
+                        filterSearchState.timeFilterTypes
+                            .map((e) => e.hasStar)
+                            .toList(),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -179,7 +215,8 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                 SizedBox(height: 10),
                 IntrinsicHeight(
                   child: FFilterButtons(
-                    allFilters: filterSearchState.rateTypes.map((e) => e.name).toList(),
+                    allFilters:
+                        filterSearchState.rateTypes.map((e) => e.name).toList(),
                     onTap: (index) {
                       setState(() {
                         filterSearchState = filterSearchState.copyWith(
@@ -187,7 +224,10 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                         );
                       });
                     },
-                    hasStars: filterSearchState.rateTypes.map((e) => e.hasStar).toList(),
+                    hasStars:
+                        filterSearchState.rateTypes
+                            .map((e) => e.hasStar)
+                            .toList(),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -202,19 +242,21 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                 IntrinsicHeight(
                   child: FFilterButtons(
                     allFilters:
-                    filterSearchState.categoryFilterTypes.map((e) => e.name).toList(),
+                        filterSearchState.categoryFilterTypes
+                            .map((e) => e.name)
+                            .toList(),
                     onTap: (index) {
                       setState(() {
                         filterSearchState = filterSearchState.copyWith(
                           selectedCategoryFilterType:
-                          filterSearchState.categoryFilterTypes[index],
+                              filterSearchState.categoryFilterTypes[index],
                         );
                       });
                     },
                     hasStars:
-                    filterSearchState.categoryFilterTypes
-                        .map((e) => e.hasStar)
-                        .toList(),
+                        filterSearchState.categoryFilterTypes
+                            .map((e) => e.hasStar)
+                            .toList(),
                   ),
                 ),
                 SizedBox(height: 20),
