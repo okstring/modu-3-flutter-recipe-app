@@ -22,10 +22,10 @@ class SearchRecipesViewModel with ChangeNotifier {
 
   FilterSearchState get filterSearchState => _filterSearchState;
 
-  void applyFilters(FilterSearchState newFilters) {
+  void applyFilters(FilterSearchState newFilters) async {
     _filterSearchState = newFilters;
 
-    fetchSearchRecipesWithFilters();
+    await fetchSearchRecipesWithFilters();
   }
 
   SearchRecipesViewModel({
