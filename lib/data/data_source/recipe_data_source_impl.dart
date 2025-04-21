@@ -22,7 +22,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
     RecipeDto(
       id: "recipe_002",
-      name: "불고기",
+      name: "Bulgogi",
       estimatedTime: 45,
       isFavorite: true,
       rate: 4.9,
@@ -36,7 +36,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
     RecipeDto(
       id: "recipe_003",
-      name: "파스타 카르보나라",
+      name: "Pasta Carbonara",
       estimatedTime: 20,
       isFavorite: false,
       rate: 4.5,
@@ -49,7 +49,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
     RecipeDto(
       id: "recipe_004",
-      name: "베이컨 아보카도 샐러드",
+      name: "Bacon Avocado Salad",
       estimatedTime: 15,
       isFavorite: true,
       rate: 4.3,
@@ -63,7 +63,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
     RecipeDto(
       id: "recipe_005",
-      name: "스팸 김치 볶음밥",
+      name: "Spam Kimchi Fried Rice",
       estimatedTime: 25,
       isFavorite: false,
       rate: 4.7,
@@ -76,7 +76,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
     RecipeDto(
       id: "recipe_006",
-      name: "초코 머핀",
+      name: "Chocolate Muffin",
       estimatedTime: 60,
       isFavorite: true,
       rate: 4.6,
@@ -90,7 +90,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
     RecipeDto(
       id: "recipe_007",
-      name: "닭갈비",
+      name: "Dakgalbi",
       estimatedTime: 40,
       isFavorite: false,
       rate: 4.4,
@@ -103,7 +103,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_001",
-      name: "김치볶음밥",
+      name: "Kimchi Fried Rice",
       estimatedTime: 20,
       isFavorite: false,
       rate: 4.2,
@@ -115,7 +115,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_002",
-      name: "된장찌개",
+      name: "Doenjang Jjigae",
       estimatedTime: 30,
       isFavorite: true,
       rate: 4.5,
@@ -127,7 +127,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_003",
-      name: "비빔밥",
+      name: "Bibimbap",
       estimatedTime: 25,
       isFavorite: true,
       rate: 4.8,
@@ -139,7 +139,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_004",
-      name: "불고기",
+      name: "Bulgogi",
       estimatedTime: 35,
       isFavorite: false,
       rate: 4.6,
@@ -151,7 +151,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_005",
-      name: "잡채",
+      name: "Japchae",
       estimatedTime: 40,
       isFavorite: false,
       rate: 4.3,
@@ -163,7 +163,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_006",
-      name: "떡볶이",
+      name: "Tteokbokki",
       estimatedTime: 15,
       isFavorite: true,
       rate: 4.7,
@@ -175,7 +175,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_007",
-      name: "닭갈비",
+      name: "Dakgalbi",
       estimatedTime: 40,
       isFavorite: false,
       rate: 4.4,
@@ -188,7 +188,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_008",
-      name: "갈비찜",
+      name: "Galbi-jjim",
       estimatedTime: 50,
       isFavorite: false,
       rate: 4.9,
@@ -200,7 +200,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_009",
-      name: "콩나물국밥",
+      name: "Kongnamul Gukbap",
       estimatedTime: 20,
       isFavorite: true,
       rate: 4.1,
@@ -212,7 +212,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
     ),
     RecipeDto(
       id: "recipe_010",
-      name: "오징어볶음",
+      name: "Ojingeo Bokkeum",
       estimatedTime: 30,
       isFavorite: false,
       rate: 4.0,
