@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
 import 'package:recipe_app/data/repository/book_mark_repository_impl.dart';
-import 'package:recipe_app/data/repository/recipe_repository_impl.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/domain/model/recipe_info.dart';
+import 'package:recipe_app/domain/model/type/category_filter_type.dart';
 import 'package:recipe_app/domain/repository/book_mark_repository.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
 import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
@@ -32,9 +32,7 @@ class MockRecipeRepository implements RecipeRepository {
   }
 
   @override
-  Future<void> saveRecentRecipes(List<Recipe> recipes) async {
-
-  }
+  Future<void> saveRecentRecipes(List<Recipe> recipes) async {}
 }
 
 class MockBookmarkRepositoryImpl implements BookmarkRepository {
@@ -57,6 +55,8 @@ void main() {
           makeUserName: '테스트 유저',
           makeUserImageUrl: 'test.jpg',
           imageUrl: 'recipe.jpg',
+          createdAt: DateTime.now(),
+          category: CategoryFilterType.breakFast,
         ),
       ],
       recipeInfo: RecipeInfo.empty,

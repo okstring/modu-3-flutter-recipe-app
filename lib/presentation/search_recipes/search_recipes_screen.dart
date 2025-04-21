@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:recipe_app/presentation/components/f_filter_buttons.dart';
 import 'package:recipe_app/presentation/components/f_input_field.dart';
 import 'package:recipe_app/presentation/components/f_search_filter_button.dart';
@@ -49,9 +50,32 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  Text(
-                    'Search recipes',
-                    style: TextStyles.mediumTextBold(color: AppColors.black),
+                  SizedBox(
+                    height: 38,
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            context.pop();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: AppColors.black,
+                            size: 24,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Search recipes',
+                            style: TextStyles.mediumTextBold(
+                              color: AppColors.black,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(width: 24),
+                      ],
+                    ),
                   ),
 
                   const SizedBox(height: 17),
