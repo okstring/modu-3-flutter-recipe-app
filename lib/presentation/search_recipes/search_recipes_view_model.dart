@@ -23,7 +23,7 @@ class SearchRecipesViewModel with ChangeNotifier {
   FilterSearchState get filterSearchState => _filterSearchState;
 
   set filterSearchState(FilterSearchState value) {
-    _filterSearchState = value;
+    _filterSearchState = value.copyWith();
     notifyListeners();
   }
 

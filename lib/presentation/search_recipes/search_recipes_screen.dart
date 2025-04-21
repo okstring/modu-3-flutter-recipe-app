@@ -140,7 +140,6 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
         FSearchFilterButton(
           voidCallback: () {
             _buildShowModalBottomSheet(context, (state) {
-              //TODO: filter 적용
               widget.viewModel.filterSearchState = state.copyWith();
             });
           },
@@ -153,7 +152,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
     BuildContext context,
     void Function(FilterSearchState) onFilterApply,
   ) {
-    FilterSearchState filterSearchState = FilterSearchState();
+    FilterSearchState filterSearchState = widget.viewModel.filterSearchState;
 
     return showModalBottomSheet(
       backgroundColor: AppColors.white,
@@ -202,6 +201,8 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                         filterSearchState.timeFilterTypes
                             .map((e) => e.hasStar)
                             .toList(),
+                    beforeSelectedIndex:
+                        filterSearchState.selectedTimeFilterType.index,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -228,6 +229,8 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                         filterSearchState.rateTypes
                             .map((e) => e.hasStar)
                             .toList(),
+                    beforeSelectedIndex:
+                        filterSearchState.selectedRateType.index,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -257,6 +260,8 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                         filterSearchState.categoryFilterTypes
                             .map((e) => e.hasStar)
                             .toList(),
+                    beforeSelectedIndex:
+                        filterSearchState.selectedCategoryFilterType.index,
                   ),
                 ),
                 SizedBox(height: 20),
