@@ -23,6 +23,12 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    widget.viewModel.getSavedRecentRecipes();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _searchFocusNode.dispose();
@@ -31,7 +37,6 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    widget.viewModel.fetchSearchRecipes();
     return ListenableBuilder(
       listenable: widget.viewModel,
       builder: (context, snapshot) {
@@ -71,6 +76,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                           style: TextStyles.smallerTextRegular(color: AppColors.gray3),
                         ),
                       ]
+
                   ),
 
                   const SizedBox(height: 20,),

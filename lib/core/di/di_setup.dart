@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:recipe_app/data/data_source/file_data_source.dart';
+import 'package:recipe_app/data/data_source/file_data_source_impl.dart';
 import 'package:recipe_app/data/data_source/recipe_data_source.dart';
 import 'package:recipe_app/data/data_source/recipe_data_source_impl.dart';
 import 'package:recipe_app/data/data_source/settings_data_source.dart';
@@ -9,8 +11,10 @@ import 'package:recipe_app/data/repository/settings_repository_impl.dart';
 import 'package:recipe_app/domain/repository/book_mark_repository.dart';
 import 'package:recipe_app/domain/repository/recipe_repository.dart';
 import 'package:recipe_app/domain/repository/settings_repository.dart';
+import 'package:recipe_app/domain/use_case/get_recent_recipes_use_case.dart';
 import 'package:recipe_app/domain/use_case/get_recipe_info_use_case.dart';
 import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
+import 'package:recipe_app/domain/use_case/save_recent_recipes_use_case.dart';
 import 'package:recipe_app/domain/use_case/throw_when_settings_info_use_case.dart';
 import 'package:recipe_app/domain/use_case/toggle_favorite_use_case.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_state.dart';
@@ -26,10 +30,11 @@ void diSetup() {
   // DataSource
   getIt.registerSingleton<RecipeDataSource>(RecipeDataSourceImpl());
   getIt.registerSingleton<SettingsDataSource>(SettingsDataSourceImpl());
+  getIt.registerSingleton<FileDataSource>(FileDataSourceImpl());
 
   // Repository
   getIt.registerSingleton<RecipeRepository>(
-    RecipeRepositoryImpl(recipeDataSource: getIt()),
+    RecipeRepositoryImpl(recipeDataSource: getIt(), fileDataSource: getIt<FileDataSource>()),
   );
   getIt.registerSingleton<BookmarkRepository>(
     BookmarkRepositoryImpl(recipeDataSource: getIt()),
@@ -54,6 +59,14 @@ void diSetup() {
     ),
   );
 
+  getIt.registerSingleton<GetRecentRecipesUseCase>(
+    GetRecentRecipesUseCase(recipeRepository: getIt()),
+  );
+
+  getIt.registerSingleton<SaveRecentRecipesUseCase>(
+    SaveRecentRecipesUseCase(recipeRepository: getIt()),
+  );
+
   // Util
   getIt.registerFactory<Debouncer>(
     () => Debouncer(delay: const Duration(milliseconds: 500)),
@@ -76,6 +89,8 @@ void diSetup() {
   getIt.registerFactory<SearchRecipesViewModel>(
     () => SearchRecipesViewModel(
       getSavedRecipesUseCase: getIt(),
+      getRecentRecipesUseCase: getIt<GetRecentRecipesUseCase>(),
+      saveRecentRecipesUseCase: getIt<SaveRecentRecipesUseCase>(),
       debouncer: getIt(),
     ),
   );
