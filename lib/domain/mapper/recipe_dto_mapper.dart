@@ -12,6 +12,8 @@ extension RecipeDtoMapper on Recipe {
       makeUserName: makeUserName,
       makeUserImageUrl: makeUserImageUrl,
       imageUrl: imageUrl,
+      createdAt: createdAt.toIso8601String(),
+      category: category.name,
     );
   }
 }
