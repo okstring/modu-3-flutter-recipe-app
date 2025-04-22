@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/routing/routes.dart';
+import 'package:recipe_app/presentation/home/home_action.dart';
 import 'package:recipe_app/presentation/home/home_screen.dart';
 import 'package:recipe_app/presentation/home/home_state.dart';
 import 'package:recipe_app/presentation/home/home_view_model.dart';
@@ -26,8 +27,15 @@ class _HomeScreenRootState extends State<HomeScreenRoot> {
       builder: (_, _) {
         return HomeScreen(
           state: state,
-          onSearchFieldTap: () {
-            context.push(Routes.search);
+          onAction: (HomeAction action) {
+            switch (action) {
+              case OnSearchFieldTap():
+                context.push(Routes.search);
+                break;
+              case OnSelectCategory():
+
+                break;
+            }
           },
         );
       },
