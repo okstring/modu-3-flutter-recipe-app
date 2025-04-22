@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/routing/routes.dart';
@@ -42,6 +40,9 @@ class _HomeScreenRootState extends State<HomeScreenRoot> {
                 break;
               case OnSelectCategory():
                 viewModel.setCategory(action.category);
+                break;
+              case OnTapFavorite():
+                viewModel.toggleFavorite(action.recipe);
                 break;
             }
           },

@@ -57,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.only(right: 16),
                         child: FDishCard(
                           recipe: widget.state.selectedCategoryRecipes[index],
-                          onTapFavorite: (Recipe recipe) {},
+                          onTapFavorite: (Recipe recipe) {
+                            widget.onAction(HomeAction.onTapFavorite(recipe));
+                          },
                         ),
                       );
                     },

@@ -78,8 +78,10 @@ void diSetup() {
 
   // ViewModel
   getIt.registerFactory<HomeViewModel>(
-    () =>
-        HomeViewModel(getSavedRecipesUseCase: getIt<GetSavedRecipesUseCase>()),
+    () => HomeViewModel(
+      getSavedRecipesUseCase: getIt<GetSavedRecipesUseCase>(),
+      toggleFavoriteUseCase: getIt<ToggleFavoriteUseCase>(),
+    ),
   );
 
   getIt.registerFactory<SplashViewModel>(
