@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/routing/routes.dart';
@@ -21,6 +23,12 @@ class _HomeScreenRootState extends State<HomeScreenRoot> {
   HomeState get state => widget.viewModel.state;
 
   @override
+  void initState() {
+    super.initState();
+    viewModel.fetchSearchRecipesWithFilters();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: viewModel,
@@ -33,7 +41,7 @@ class _HomeScreenRootState extends State<HomeScreenRoot> {
                 context.push(Routes.search);
                 break;
               case OnSelectCategory():
-
+                viewModel.setCategory(action.category);
                 break;
             }
           },

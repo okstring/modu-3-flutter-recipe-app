@@ -45,14 +45,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   categories: widget.state.categories,
                 ),
 
-                FDishCard(
-                  recipe: Recipe.empty.copyWith(
-                    imageUrl: 'https://picsum.photos/200?random=13',
-                    name: 'Classic',
-                    estimatedTime: 30,
-                    isFavorite: true,
+                SizedBox(height: 15,),
+
+                SizedBox(
+                  height: 231,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: widget.state.selectedCategoryRecipes.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: FDishCard(
+                          recipe: widget.state.selectedCategoryRecipes[index],
+                          onTapFavorite: (Recipe recipe) {},
+                        ),
+                      );
+                    },
                   ),
-                  onTapFavorite: (Recipe recipe) {},
                 ),
               ],
             ),

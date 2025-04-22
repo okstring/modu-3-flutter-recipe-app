@@ -164,19 +164,16 @@ class _FDishCardState extends State<FDishCard> {
         widget.recipe.imageUrl,
         width: 110,
         height: 110,
+        filterQuality: FilterQuality.low,
         fit: BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) {
+        frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+          if (wasSynchronouslyLoaded || frame != null) {
             return child;
           }
-          return Center(
-            child: CircularProgressIndicator(
-              value:
-                  loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
-            ),
+          return SizedBox(
+            width: 110,
+            height: 110,
+            child: Center(child: CircularProgressIndicator()),
           );
         },
       ),

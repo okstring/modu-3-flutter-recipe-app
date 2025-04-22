@@ -77,7 +77,10 @@ void diSetup() {
   );
 
   // ViewModel
-  getIt.registerFactory<HomeViewModel>(() => HomeViewModel());
+  getIt.registerFactory<HomeViewModel>(
+    () =>
+        HomeViewModel(getSavedRecipesUseCase: getIt<GetSavedRecipesUseCase>()),
+  );
 
   getIt.registerFactory<SplashViewModel>(
     () => SplashViewModel(
