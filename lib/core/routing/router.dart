@@ -19,7 +19,7 @@ import 'package:recipe_app/presentation/splash_screen/splash_view_model.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: Routes.splash,
+    initialLocation: Routes.home,
     routes: [
       GoRoute(
         path: Routes.splash,

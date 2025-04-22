@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/presentation/components/f_input_field.dart';
 import 'package:recipe_app/presentation/components/f_search_filter_button.dart';
+import 'package:recipe_app/presentation/home/home_state.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  final HomeState state;
+  final void Function() onSearchFieldTap;
 
+  const HomeScreen({
+    super.key,
+    required this.state,
+    required this.onSearchFieldTap,
+  });
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +73,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Flexible(
                       child: GestureDetector(
-                        onTap: () {
-                          context.push(Routes.search);
-                        },
+                        onTap: widget.onSearchFieldTap,
                         child: AbsorbPointer(
                           child: FInputField(
                             placeHolder: 'Search recipe',
