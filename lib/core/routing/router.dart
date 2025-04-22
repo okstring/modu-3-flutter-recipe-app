@@ -1,7 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:recipe_app/core/di/di_setup.dart';
 import 'package:recipe_app/core/routing/routes.dart';
-import 'package:recipe_app/presentation/home/home_screen.dart';
+import 'package:recipe_app/presentation/home/home_screen_root.dart';
+import 'package:recipe_app/presentation/home/home_view_model.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_scene.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_view_model.dart';
 import 'package:recipe_app/presentation/main/main_screen.dart';
@@ -66,7 +67,7 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: Routes.home,
-                builder: (context, state) => const HomeScreen(),
+                builder: (context, state) => HomeScreenRoot(viewModel: getIt<HomeViewModel>()),
               ),
             ],
           ),
