@@ -16,7 +16,11 @@ class IngredientScreen extends StatefulWidget {
   final IngredientState state;
   final void Function(IngredientAction action) onAction;
 
-  const IngredientScreen({super.key, required this.state, required this.onAction,});
+  const IngredientScreen({
+    super.key,
+    required this.state,
+    required this.onAction,
+  });
 
   @override
   State<IngredientScreen> createState() => _IngredientScreenState();
@@ -174,8 +178,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
               style: TextStyles.smallTextBold(color: AppColors.black),
             ),
 
-            if ((widget.state.recipeInfo.makeUserLocation ?? '')
-                .isNotEmpty)
+            if ((widget.state.recipeInfo.makeUserLocation ?? '').isNotEmpty)
               Row(
                 children: [
                   Icon(Icons.pin_drop, size: 17, color: AppColors.gray3),
@@ -236,12 +239,96 @@ class _IngredientScreenState extends State<IngredientScreen> {
 
           Spacer(),
 
-          GestureDetector(
-            onTap: () {},
-            child: Icon(Icons.more_horiz, size: 24),
-          ),
+          _buildPopupMenuButton(),
         ],
       ),
+    );
+  }
+
+  PopupMenuButton<String> _buildPopupMenuButton() {
+    return PopupMenuButton<String>(
+      icon: Icon(Icons.more_horiz, size: 24),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onSelected: (value) {
+        switch (value) {
+          case 'share':
+            break;
+          case 'rate':
+            widget.onAction(IngredientAction.onRateTap(widget.state.recipeInfo.id));
+            break;
+          case 'review':
+            break;
+          case 'unsave':
+            break;
+        }
+      },
+      itemBuilder:
+          (BuildContext context) => <PopupMenuEntry<String>>[
+            PopupMenuItem<String>(
+              value: 'share',
+              child: Row(
+                children: [
+                  Icon(Icons.share, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    'share',
+                    style: TextStyles.smallerTextRegular(
+                      color: AppColors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'rate',
+              child: Row(
+                children: [
+                  Icon(Icons.star, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    'Rate Recipe',
+                    style: TextStyles.smallerTextRegular(
+                      color: AppColors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'review',
+              child: Row(
+                children: [
+                  Icon(Icons.chat_bubble_outline, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    'Review',
+                    style: TextStyles.smallerTextRegular(
+                      color: AppColors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            PopupMenuItem<String>(
+              value: 'unsave',
+              child: Row(
+                children: [
+                  Icon(Icons.bookmark_border, size: 20),
+                  SizedBox(width: 8),
+                  Text(
+                    'Unsave',
+                    style: TextStyles.smallerTextRegular(
+                      color: AppColors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
     );
   }
 }

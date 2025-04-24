@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/presentation/components/f_rating_dialog.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_action.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_scene.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_state.dart';
@@ -33,6 +34,15 @@ class _IngredientScreenRootState extends State<IngredientScreenRoot> {
               case OnTapFavorite():
                 viewModel.toggleRecipeInfoFavorite(action.id);
                 break;
+              case OnRateTap():
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return FRatingDialog(onRatingSelected: (rating) {
+                      print(rating);
+                    });
+                  },
+                );
             }
           },
         );

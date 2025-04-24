@@ -11,7 +11,7 @@ void main() {
       const title = '별점 주기';
       const actionName = '확인';
       int serveRatingValue = 0;
-      onChange(int value) {
+      onRatingSelected(int value) {
         serveRatingValue = value;
       }
 
@@ -19,9 +19,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: FRatingDialog(
-              title: title,
-              actionName: actionName,
-              onChange: onChange,
+              onRatingSelected: onRatingSelected,
             ),
           ),
         ),
