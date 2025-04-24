@@ -3,7 +3,6 @@ import 'package:recipe_app/core/di/di_setup.dart';
 import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/presentation/home/home_screen_root.dart';
 import 'package:recipe_app/presentation/home/home_view_model.dart';
-import 'package:recipe_app/presentation/ingredient/ingredient_scene.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_screen_root.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_view_model.dart';
 import 'package:recipe_app/presentation/main/main_screen.dart';
@@ -12,8 +11,7 @@ import 'package:recipe_app/presentation/notifications/notifications_screen.dart'
 import 'package:recipe_app/presentation/profile/profile_screen.dart';
 import 'package:recipe_app/presentation/saved_recipe/saved_recipes_screen.dart';
 import 'package:recipe_app/presentation/saved_recipe/saved_recipes_view_model.dart';
-import 'package:recipe_app/presentation/search_recipes/search_recipes_screen.dart';
-import 'package:recipe_app/presentation/search_recipes/search_recipes_view_model.dart';
+import 'package:recipe_app/presentation/search_recipes/search_recipes_screen_root.dart';
 import 'package:recipe_app/presentation/sign_in/sign_in_screen.dart';
 import 'package:recipe_app/presentation/sign_up/sign_up_screen.dart';
 import 'package:recipe_app/presentation/splash_screen/splash_screen_root.dart';
@@ -57,8 +55,7 @@ class AppRouter {
       GoRoute(
         path: Routes.search,
         builder:
-            (context, state) =>
-                SearchRecipesScreen(viewModel: getIt<SearchRecipesViewModel>()),
+            (context, state) => SearchRecipesScreenRoot(viewModel: getIt()),
       ),
 
       StatefulShellRoute.indexedStack(

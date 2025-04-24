@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/presentation/components/f_small_recipe_card.dart';
-import 'package:recipe_app/presentation/search_recipes/search_recipes_view_model.dart';
+import 'package:recipe_app/presentation/search_recipes/search_recipes_state.dart';
 
 class RecipeGridView extends StatelessWidget {
-  final SearchRecipesViewModel viewModel;
+  final SearchRecipesState state;
   final Function(Recipe) onRecipeTap;
   final int crossAxisCount;
   final double spacing;
 
   const RecipeGridView({
     super.key,
-    required this.viewModel,
     required this.onRecipeTap,
     this.crossAxisCount = 2,
     this.spacing = 15.0,
+    required this.state,
   });
 
   @override
@@ -25,32 +25,27 @@ class RecipeGridView extends StatelessWidget {
 
     final itemWidth = availableWidth / crossAxisCount;
 
-    return ListenableBuilder(
-      listenable: viewModel,
-      builder: (context, snapshot) {
-        return Expanded(
-          child: GridView.builder(
-            itemCount: viewModel.searchRecipesMainState.searchRecipes.length,
+    return Expanded(
+      child: GridView.builder(
+        itemCount: state.searchRecipes.length,
 
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: spacing,
-              mainAxisSpacing: spacing,
-              childAspectRatio: 1.0,
-            ),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: spacing,
+          mainAxisSpacing: spacing,
+          childAspectRatio: 1.0,
+        ),
 
-            itemBuilder: (context, index) {
-              final recipe = viewModel.searchRecipesMainState.searchRecipes[index];
+        itemBuilder: (context, index) {
+          final recipe = state.searchRecipes[index];
 
-              return FSmallRecipeCard(
-                recipe: recipe,
-                onTap: () => onRecipeTap(recipe),
-                width: itemWidth,
-              );
-            },
-          ),
-        );
-      }
+          return FSmallRecipeCard(
+            recipe: recipe,
+            onTap: () => onRecipeTap(recipe),
+            width: itemWidth,
+          );
+        },
+      ),
     );
   }
 }

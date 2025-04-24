@@ -6,14 +6,23 @@ import 'package:recipe_app/presentation/components/f_search_filter_button.dart';
 import 'package:recipe_app/presentation/components/f_small_button.dart';
 import 'package:recipe_app/presentation/search_recipes/filter_search_state.dart';
 import 'package:recipe_app/presentation/search_recipes/recipe_grid_view.dart';
+import 'package:recipe_app/presentation/search_recipes/search_recipes_action.dart';
+import 'package:recipe_app/presentation/search_recipes/search_recipes_state.dart';
 import 'package:recipe_app/presentation/search_recipes/search_recipes_view_model.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
 class SearchRecipesScreen extends StatefulWidget {
-  final SearchRecipesViewModel viewModel;
+  final SearchRecipesState state;
+  final FilterSearchState filterSearchState;
+  final void Function(SearchRecipesAction action) onAction;
 
-  const SearchRecipesScreen({super.key, required this.viewModel});
+  const SearchRecipesScreen({
+    super.key,
+    required this.state,
+    required this.onAction,
+    required this.filterSearchState,
+  });
 
   @override
   State<SearchRecipesScreen> createState() => _SearchRecipesScreenState();
@@ -24,12 +33,6 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    widget.viewModel.getSavedRecentRecipes();
-  }
-
-  @override
   void dispose() {
     super.dispose();
     _searchFocusNode.dispose();
@@ -38,108 +41,95 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: widget.viewModel,
-      builder: (context, snapshot) {
-        return Scaffold(
-          body: SafeArea(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    height: 38,
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            context.pop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: AppColors.black,
-                            size: 24,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Search recipes',
-                            style: TextStyles.mediumTextBold(
-                              color: AppColors.black,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        SizedBox(width: 24),
-                      ],
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 38,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        context.pop();
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: AppColors.black,
+                        size: 24,
+                      ),
                     ),
-                  ),
-
-                  const SizedBox(height: 17),
-                  _buildSearchBarArea(context),
-                  const SizedBox(height: 20),
-
-                  Row(
-                    children: [
-                      Text(
-                        widget.viewModel.searchRecipesMainState.query.isEmpty
-                            ? 'Recent Search'
-                            : 'Search Result',
+                    Expanded(
+                      child: Text(
+                        'Search recipes',
                         style: TextStyles.mediumTextBold(
                           color: AppColors.black,
                         ),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                       ),
+                    ),
+                    SizedBox(width: 24),
+                  ],
+                ),
+              ),
 
-                      Spacer(),
+              const SizedBox(height: 17),
+              _buildSearchBarArea(context),
+              const SizedBox(height: 20),
 
-                      if (widget
-                          .viewModel
-                          .searchRecipesMainState
-                          .query
-                          .isNotEmpty)
-                        Text(
-                          '${widget.viewModel.searchRecipesMainState.searchRecipes.length} results',
-                          style: TextStyles.smallerTextRegular(
-                            color: AppColors.gray3,
-                          ),
-                        ),
-                    ],
+              Row(
+                children: [
+                  Text(
+                    widget.state.query.isEmpty
+                        ? 'Recent Search'
+                        : 'Search Result',
+                    style: TextStyles.mediumTextBold(color: AppColors.black),
+                    textAlign: TextAlign.start,
                   ),
 
-                  const SizedBox(height: 20),
+                  Spacer(),
 
-                  if (widget
-                      .viewModel
-                      .searchRecipesMainState
-                      .searchRecipes
-                      .isEmpty)
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          '레시피가 없습니다.',
-                          style: TextStyles.mediumTextRegular(
-                            color: AppColors.black,
-                          ),
-                        ),
+                  if (widget.state.query.isNotEmpty)
+                    Text(
+                      '${widget.state.searchRecipes.length} results',
+                      style: TextStyles.smallerTextRegular(
+                        color: AppColors.gray3,
                       ),
-                    )
-                  else
-                    RecipeGridView(
-                      viewModel: widget.viewModel,
-                      onRecipeTap: (recipe) {
-                        print('레시피 누름: ${recipe.name}');
-                      },
                     ),
                 ],
               ),
-            ),
+
+              const SizedBox(height: 20),
+
+              if (widget.state.searchRecipes.isEmpty)
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      '레시피가 없습니다.',
+                      style: TextStyles.mediumTextRegular(
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ),
+                )
+              else
+                RecipeGridView(
+                  state: widget.state,
+                  onRecipeTap: (recipe) {
+                    widget.onAction(
+                      SearchRecipesAction.onTabRecipe(id: recipe.id),
+                    );
+                  },
+                ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
@@ -152,10 +142,10 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
         Expanded(
           child: FInputField(
             placeHolder: 'Search recipe ',
-            value: widget.viewModel.searchRecipesMainState.query,
+            value: widget.state.query,
             isVisibleSearchIcon: true,
             onValueChange: (value) {
-              widget.viewModel.fetchSearchRecipesByQuery(query: value);
+              widget.onAction(SearchRecipesAction.onInputChanged(query: value));
             },
             searchController: _searchController,
             focusNode: _searchFocusNode,
@@ -164,7 +154,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
         FSearchFilterButton(
           voidCallback: () {
             _buildShowModalBottomSheet(context, (state) {
-              widget.viewModel.applyFilters(state.copyWith());
+              widget.onAction(SearchRecipesAction.applyFilters(state: state));
             });
           },
         ),
@@ -176,7 +166,7 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
     BuildContext context,
     void Function(FilterSearchState) onFilterApply,
   ) {
-    FilterSearchState filterSearchState = widget.viewModel.filterSearchState;
+    FilterSearchState filterSearchState = widget.filterSearchState;
 
     return showModalBottomSheet(
       backgroundColor: AppColors.white,
@@ -292,7 +282,11 @@ class _SearchRecipesScreenState extends State<SearchRecipesScreen> {
                 FSmallButton(
                   text: 'Filter',
                   voidCallback: () {
-                    widget.viewModel.applyFilters(filterSearchState);
+                    widget.onAction(
+                      SearchRecipesAction.applyFilters(
+                        state: filterSearchState,
+                      ),
+                    );
                     Navigator.pop(context);
                   },
                 ),
