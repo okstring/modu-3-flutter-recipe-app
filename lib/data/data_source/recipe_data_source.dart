@@ -14,5 +14,7 @@ abstract interface class RecipeDataSource {
 
   Future<RecipeInfoDto> fetchRecipeInfo({required String id});
 
-  Future<RecipeDto> toggleFavorite(String id);
+  Future<RecipeDto> toggleFavorite({required String id});
+
+  Future<RecipeInfoDto> toggleRecipeInfoFavorite({required String id});
 }

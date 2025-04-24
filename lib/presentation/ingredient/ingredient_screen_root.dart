@@ -30,6 +30,9 @@ class _IngredientScreenRootState extends State<IngredientScreenRoot> {
               case OnTapFTabs():
                 viewModel.changeTabsType(action.index);
                 break;
+              case OnTapFavorite():
+                viewModel.toggleRecipeInfoFavorite(action.id);
+                break;
             }
           },
         );

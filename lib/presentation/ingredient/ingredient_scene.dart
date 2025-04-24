@@ -48,7 +48,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
                       FRecipeCard(
                         recipe: widget.state.recipeInfo.toRecipe(),
                         onToggleFavorite: (id) {
-                          //TODO: Toggle Favorite;
+                          widget.onAction(IngredientAction.onTapFavorite(id));
                         },
                         isVisibleTitle: false,
                       ),

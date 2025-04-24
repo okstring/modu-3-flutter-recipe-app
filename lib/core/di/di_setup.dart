@@ -37,14 +37,14 @@ void diSetup() {
   getIt.registerSingleton<RecipeRepository>(
     RecipeRepositoryImpl(
       recipeDataSource: getIt(),
-      fileDataSource: getIt<FileDataSource>(),
+      fileDataSource: getIt(),
     ),
   );
   getIt.registerSingleton<BookmarkRepository>(
     BookmarkRepositoryImpl(recipeDataSource: getIt()),
   );
   getIt.registerSingleton<SettingsRepository>(
-    SettingsRepositoryImpl(settingsDataSource: getIt<SettingsDataSource>()),
+    SettingsRepositoryImpl(settingsDataSource: getIt()),
   );
 
   // UseCase
@@ -59,7 +59,7 @@ void diSetup() {
   );
   getIt.registerSingleton<ThrowWhenSettingsInfoUseCase>(
     ThrowWhenSettingsInfoUseCase(
-      settingsRepository: getIt<SettingsRepository>(),
+      settingsRepository: getIt(),
     ),
   );
 
@@ -79,14 +79,14 @@ void diSetup() {
   // ViewModel
   getIt.registerFactory<HomeViewModel>(
     () => HomeViewModel(
-      getSavedRecipesUseCase: getIt<GetSavedRecipesUseCase>(),
-      toggleFavoriteUseCase: getIt<ToggleFavoriteUseCase>(),
+      getSavedRecipesUseCase: getIt(),
+      toggleFavoriteUseCase: getIt(),
     ),
   );
 
   getIt.registerFactory<SplashViewModel>(
     () => SplashViewModel(
-      throwWhenSettingsInfoUseCase: getIt<ThrowWhenSettingsInfoUseCase>(),
+      throwWhenSettingsInfoUseCase: getIt(),
     ),
   );
 
@@ -100,8 +100,8 @@ void diSetup() {
   getIt.registerFactory<SearchRecipesViewModel>(
     () => SearchRecipesViewModel(
       getSavedRecipesUseCase: getIt(),
-      getRecentRecipesUseCase: getIt<GetRecentRecipesUseCase>(),
-      saveRecentRecipesUseCase: getIt<SaveRecentRecipesUseCase>(),
+      getRecentRecipesUseCase: getIt(),
+      saveRecentRecipesUseCase: getIt(),
       debouncer: getIt(),
     ),
   );
@@ -110,6 +110,7 @@ void diSetup() {
     (id, _) => IngredientViewModel(
       state: IngredientState(id: id),
       getRecipeInfoUseCase: getIt(),
+      toggleFavoriteUseCase: getIt(),
     ),
   );
 }

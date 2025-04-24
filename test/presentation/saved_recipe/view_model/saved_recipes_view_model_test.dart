@@ -47,6 +47,11 @@ class MockBookmarkRepositoryImpl implements BookmarkRepository {
   Future<Recipe> toggleFavorite(String id) {
     return Future.value(Recipe.empty.copyWith(id: id, isFavorite: true));
   }
+
+  @override
+  Future<RecipeInfo> toggleRecipeInfoFavorite({required String id}) {
+    return Future.value(RecipeInfo.empty.copyWith(id: id, isFavorite: true));
+  }
 }
 
 void main() {

@@ -5,4 +5,5 @@ part 'ingredient_action.freezed.dart';
 @freezed
 sealed class IngredientAction with _$IngredientAction {
   const factory IngredientAction.onTapFTabs(int index) = OnTapFTabs;
+  const factory IngredientAction.onTapFavorite(String id) = OnTapFavorite;
 }
