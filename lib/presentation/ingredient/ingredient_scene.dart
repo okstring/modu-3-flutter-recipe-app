@@ -6,14 +6,17 @@ import 'package:recipe_app/presentation/components/f_procedure_item.dart';
 import 'package:recipe_app/presentation/components/f_recipe_card.dart';
 import 'package:recipe_app/presentation/components/f_small_button.dart';
 import 'package:recipe_app/presentation/components/f_tabs.dart';
+import 'package:recipe_app/presentation/ingredient/ingredient_action.dart';
+import 'package:recipe_app/presentation/ingredient/ingredient_state.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_view_model.dart';
 import 'package:recipe_app/ui/color_styles.dart';
 import 'package:recipe_app/ui/text_styles.dart';
 
 class IngredientScreen extends StatefulWidget {
-  final IngredientViewModel viewModel;
+  final IngredientState state;
+  final void Function(IngredientAction action) onAction;
 
-  const IngredientScreen({super.key, required this.viewModel});
+  const IngredientScreen({super.key, required this.state, required this.onAction,});
 
   @override
   State<IngredientScreen> createState() => _IngredientScreenState();
@@ -24,10 +27,9 @@ class _IngredientScreenState extends State<IngredientScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: ListenableBuilder(
-        listenable: widget.viewModel,
-        builder: (context, snapshot) {
-          if (widget.viewModel.state.isLoading) {
+      body: Builder(
+        builder: (context) {
+          if (widget.state.isLoading) {
             return Center(child: CircularProgressIndicator());
           } else {
             return SafeArea(
@@ -44,7 +46,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
                       SizedBox(height: 10),
 
                       FRecipeCard(
-                        recipe: widget.viewModel.state.recipeInfo.toRecipe(),
+                        recipe: widget.state.recipeInfo.toRecipe(),
                         onToggleFavorite: (id) {
                           //TODO: Toggle Favorite;
                         },
@@ -64,7 +66,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
                       FTabs(
                         labels: TabsType.tabsName,
                         onValueChange: (index) {
-                          widget.viewModel.changeTabsType(index);
+                          widget.onAction(IngredientAction.onTapFTabs(index));
                         },
                       ),
 
@@ -87,10 +89,10 @@ class _IngredientScreenState extends State<IngredientScreen> {
   }
 
   ListView _buildIngridents() {
-    final ingredients = widget.viewModel.state.recipeInfo.ingredient;
-    final procedures = widget.viewModel.state.recipeInfo.procedures;
+    final ingredients = widget.state.recipeInfo.ingredient;
+    final procedures = widget.state.recipeInfo.procedures;
     final itemCount =
-        widget.viewModel.state.tabsType == TabsType.ingrident
+        widget.state.tabsType == TabsType.ingrident
             ? ingredients.length
             : procedures.length;
 
@@ -103,7 +105,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
         return Padding(
           padding: EdgeInsets.only(bottom: index == lastIndex ? 0 : 10),
           child:
-              widget.viewModel.state.tabsType == TabsType.ingrident
+              widget.state.tabsType == TabsType.ingrident
                   ? FIngredientItem(ingredient: ingredients[index])
                   : FProcedureItem(
                     description: procedures[index],
@@ -127,9 +129,9 @@ class _IngredientScreenState extends State<IngredientScreen> {
         Spacer(),
 
         Text(
-          widget.viewModel.state.tabsType == TabsType.ingrident
-              ? '${widget.viewModel.state.recipeInfo.ingredient.length} items'
-              : '${widget.viewModel.state.recipeInfo.procedures.length} Steps',
+          widget.state.tabsType == TabsType.ingrident
+              ? '${widget.state.recipeInfo.ingredient.length} items'
+              : '${widget.state.recipeInfo.procedures.length} Steps',
           style: TextStyles.smallerTextRegular(color: AppColors.gray3),
         ),
       ],
@@ -141,7 +143,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
       children: [
         ClipOval(
           child: Image.network(
-            widget.viewModel.state.recipeInfo.makeUserImageUrl,
+            widget.state.recipeInfo.makeUserImageUrl,
             fit: BoxFit.cover,
             width: 40,
             height: 40,
@@ -168,17 +170,17 @@ class _IngredientScreenState extends State<IngredientScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.viewModel.state.recipeInfo.makeUserName,
+              widget.state.recipeInfo.makeUserName,
               style: TextStyles.smallTextBold(color: AppColors.black),
             ),
 
-            if ((widget.viewModel.state.recipeInfo.makeUserLocation ?? '')
+            if ((widget.state.recipeInfo.makeUserLocation ?? '')
                 .isNotEmpty)
               Row(
                 children: [
                   Icon(Icons.pin_drop, size: 17, color: AppColors.gray3),
                   Text(
-                    widget.viewModel.state.recipeInfo.makeUserLocation ?? '',
+                    widget.state.recipeInfo.makeUserLocation ?? '',
                     style: TextStyles.smallTextRegular(color: AppColors.black),
                   ),
                 ],
@@ -204,7 +206,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
       children: [
         Expanded(
           child: Text(
-            widget.viewModel.state.recipeInfo.name,
+            widget.state.recipeInfo.name,
             style: TextStyles.normalTextBold(color: AppColors.black),
             softWrap: true,
             overflow: TextOverflow.ellipsis,
@@ -213,7 +215,7 @@ class _IngredientScreenState extends State<IngredientScreen> {
         ),
 
         Text(
-          '(${widget.viewModel.state.recipeInfo.reviewCount}K Reviews)',
+          '(${widget.state.recipeInfo.reviewCount}K Reviews)',
           style: TextStyles.normalTextRegular(color: AppColors.gray3),
         ),
       ],

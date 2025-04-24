@@ -4,6 +4,7 @@ import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/presentation/home/home_screen_root.dart';
 import 'package:recipe_app/presentation/home/home_view_model.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_scene.dart';
+import 'package:recipe_app/presentation/ingredient/ingredient_screen_root.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_view_model.dart';
 import 'package:recipe_app/presentation/main/main_screen.dart';
 import 'package:recipe_app/presentation/not_found_screen.dart';
@@ -43,7 +44,7 @@ class AppRouter {
             final id =
                 state.pathParameters[RoutesParameters
                     .ingredientRecipeIdParameter]!;
-            return IngredientScreen(
+            return IngredientScreenRoot(
               viewModel: getIt<IngredientViewModel>(param1: id),
             );
           } catch (e) {
