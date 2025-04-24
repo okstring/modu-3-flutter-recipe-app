@@ -878,8 +878,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
         id: recipe.id,
         name: recipe.name,
         estimatedTime: recipe.estimatedTime,
-        isFavorite: !recipe.isFavorite,
-        // 토글
+        isFavorite: !recipe.isFavorite, // 토글
         rate: recipe.rate,
         makeUserName: recipe.makeUserName,
         makeUserImageUrl: recipe.makeUserImageUrl,
@@ -892,6 +891,29 @@ class RecipeDataSourceImpl implements RecipeDataSource {
       // 레시피 업데이트
       _mockRecipes[recipeIndex] = updatedRecipe;
 
+      // 관련된 레시피 정보도 함께 업데이트
+      final recipeInfoIndex = _mockRecipesInfo.indexWhere((info) => info.id == id);
+      if (recipeInfoIndex != -1) {
+        final recipeInfo = _mockRecipesInfo[recipeInfoIndex];
+        _mockRecipesInfo[recipeInfoIndex] = RecipeInfoDto(
+          id: recipeInfo.id,
+          name: recipeInfo.name,
+          estimatedTime: recipeInfo.estimatedTime,
+          isFavorite: !recipeInfo.isFavorite, // 토글
+          rate: recipeInfo.rate,
+          makeUserName: recipeInfo.makeUserName,
+          makeUserImageUrl: recipeInfo.makeUserImageUrl,
+          videoUrl: recipeInfo.videoUrl,
+          imageUrl: recipeInfo.imageUrl,
+          reviewCount: recipeInfo.reviewCount,
+          ingredient: recipeInfo.ingredient,
+          procedures: recipeInfo.procedures,
+          makeUserLocation: recipeInfo.makeUserLocation,
+          isFollow: recipeInfo.isFollow,
+          recipeDeepLink: recipeInfo.recipeDeepLink,
+        );
+      }
+
       return Future.value(updatedRecipe);
     } catch (e) {
       throw Exception('레시피 즐겨찾기 상태 변경 중 오류 발생: ${e.toString()}');
@@ -901,9 +923,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
   @override
   Future<RecipeInfoDto> toggleRecipeInfoFavorite({required String id}) async {
     try {
-      final recipeInfoIndex = _mockRecipesInfo.indexWhere(
-        (info) => info.id == id,
-      );
+      final recipeInfoIndex = _mockRecipesInfo.indexWhere((info) => info.id == id);
 
       if (recipeInfoIndex == -1) {
         throw Exception('레시피 정보를 찾을 수 없습니다: $id');
@@ -915,8 +935,7 @@ class RecipeDataSourceImpl implements RecipeDataSource {
         id: recipeInfo.id,
         name: recipeInfo.name,
         estimatedTime: recipeInfo.estimatedTime,
-        isFavorite: !recipeInfo.isFavorite,
-        // 토글
+        isFavorite: !recipeInfo.isFavorite, // 토글
         rate: recipeInfo.rate,
         makeUserName: recipeInfo.makeUserName,
         makeUserImageUrl: recipeInfo.makeUserImageUrl,
@@ -932,6 +951,25 @@ class RecipeDataSourceImpl implements RecipeDataSource {
 
       // 레시피 정보 업데이트
       _mockRecipesInfo[recipeInfoIndex] = updatedRecipeInfo;
+
+      // 관련된 기본 레시피도 업데이트
+      final recipeIndex = _mockRecipes.indexWhere((recipe) => recipe.id == id);
+      if (recipeIndex != -1) {
+        final recipe = _mockRecipes[recipeIndex];
+        _mockRecipes[recipeIndex] = RecipeDto(
+          id: recipe.id,
+          name: recipe.name,
+          estimatedTime: recipe.estimatedTime,
+          isFavorite: !recipe.isFavorite, // 토글
+          rate: recipe.rate,
+          makeUserName: recipe.makeUserName,
+          makeUserImageUrl: recipe.makeUserImageUrl,
+          videoUrl: recipe.videoUrl,
+          imageUrl: recipe.imageUrl,
+          createdAt: recipe.createdAt,
+          category: recipe.category,
+        );
+      }
 
       return Future.value(updatedRecipeInfo);
     } catch (e) {
