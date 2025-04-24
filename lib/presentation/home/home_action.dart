@@ -8,5 +8,6 @@ sealed class HomeAction with _$HomeAction {
   const factory HomeAction.onSearchFieldTap() = OnSearchFieldTap;
   const factory HomeAction.onSelectCategory(String category) = OnSelectCategory;
   const factory HomeAction.onTapFavorite(Recipe recipe) = OnTapFavorite;
+  const factory HomeAction.onTapDishCard(Recipe recipe) = OnTapDishCard;
 }
 

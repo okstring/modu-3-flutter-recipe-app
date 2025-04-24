@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/core/routing/routes.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/presentation/components/f_dish_card.dart';
 import 'package:recipe_app/presentation/components/f_input_field.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   categories: widget.state.categories,
                 ),
 
-                SizedBox(height: 15,),
+                SizedBox(height: 15),
 
                 SizedBox(
                   height: 231,
@@ -55,11 +56,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(right: 16),
-                        child: FDishCard(
-                          recipe: widget.state.selectedCategoryRecipes[index],
-                          onTapFavorite: (Recipe recipe) {
-                            widget.onAction(HomeAction.onTapFavorite(recipe));
+                        child: GestureDetector(
+                          onTap: () {
+                            widget.onAction(
+                              HomeAction.onTapDishCard(
+                                widget.state.selectedCategoryRecipes[index],
+                              ),
+                            );
                           },
+                          child: FDishCard(
+                            recipe: widget.state.selectedCategoryRecipes[index],
+                            onTapFavorite: (Recipe recipe) {
+                              widget.onAction(HomeAction.onTapFavorite(recipe));
+                            },
+                          ),
                         ),
                       );
                     },

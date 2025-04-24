@@ -44,6 +44,10 @@ class _HomeScreenRootState extends State<HomeScreenRoot> {
               case OnTapFavorite():
                 viewModel.toggleFavorite(action.recipe);
                 break;
+              case OnTapDishCard():
+                final basePath = Routes.ingredient.split('/:')[0];
+                context.push('$basePath/${action.recipe.id}');
+                break;
             }
           },
         );
