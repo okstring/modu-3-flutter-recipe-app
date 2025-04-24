@@ -40,6 +40,11 @@ class MockRecipeRepository implements RecipeRepository {
 
   @override
   Future<void> saveRecentRecipes(List<Recipe> recipes) async {}
+
+  @override
+  Future<RecipeInfo> updateRecipeInfo({required RecipeInfo recipeInfo}) {
+    return Future.value(recipeInfo);
+  }
 }
 
 class MockBookmarkRepositoryImpl implements BookmarkRepository {

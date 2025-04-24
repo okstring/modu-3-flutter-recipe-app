@@ -18,4 +18,6 @@ abstract interface class RecipeRepository {
   Future<void> saveRecentRecipes(List<Recipe> recipes);
 
   Future<List<Recipe>> getSavedRecentRecipes();
+
+  Future<RecipeInfo> updateRecipeInfo({required RecipeInfo recipeInfo});
 }

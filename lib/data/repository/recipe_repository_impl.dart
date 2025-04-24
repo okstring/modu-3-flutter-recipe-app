@@ -3,6 +3,7 @@ import 'package:recipe_app/data/data_source/recipe_data_source.dart';
 import 'package:recipe_app/data/mapper/recipe_info_mapper.dart';
 import 'package:recipe_app/data/mapper/recipe_mapper.dart';
 import 'package:recipe_app/domain/mapper/recipe_dto_mapper.dart';
+import 'package:recipe_app/domain/mapper/recipe_info_dto_mapper.dart';
 import 'package:recipe_app/domain/model/recipe.dart';
 import 'package:recipe_app/domain/model/recipe_info.dart';
 import 'package:recipe_app/domain/model/type/category_filter_type.dart';
@@ -50,5 +51,12 @@ class RecipeRepositoryImpl implements RecipeRepository {
   Future<void> saveRecentRecipes(List<Recipe> recipes) async {
     final recipesDto = recipes.map((e) => e.toRecipeDto()).toList();
     _fileDataSource.saveRecentRecipes(recipesDto);
+  }
+
+  @override
+  Future<RecipeInfo> updateRecipeInfo({required RecipeInfo recipeInfo}) async {
+    final recipeInfoDto = recipeInfo.toRecipeInfoDto();
+    final updatedRecipeInfoDto = await _recipeDataSource.updateRecipeInfo(recipeInfoDto: recipeInfoDto);
+    return updatedRecipeInfoDto.toRecipeInfo();
   }
 }

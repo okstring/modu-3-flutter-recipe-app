@@ -17,6 +17,7 @@ import 'package:recipe_app/domain/use_case/get_saved_recipes_use_case.dart';
 import 'package:recipe_app/domain/use_case/save_recent_recipes_use_case.dart';
 import 'package:recipe_app/domain/use_case/throw_when_settings_info_use_case.dart';
 import 'package:recipe_app/domain/use_case/toggle_favorite_use_case.dart';
+import 'package:recipe_app/domain/use_case/update_recipe_use_case.dart';
 import 'package:recipe_app/presentation/home/home_view_model.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_state.dart';
 import 'package:recipe_app/presentation/ingredient/ingredient_view_model.dart';
@@ -35,10 +36,7 @@ void diSetup() {
 
   // Repository
   getIt.registerSingleton<RecipeRepository>(
-    RecipeRepositoryImpl(
-      recipeDataSource: getIt(),
-      fileDataSource: getIt(),
-    ),
+    RecipeRepositoryImpl(recipeDataSource: getIt(), fileDataSource: getIt()),
   );
   getIt.registerSingleton<BookmarkRepository>(
     BookmarkRepositoryImpl(recipeDataSource: getIt()),
@@ -58,9 +56,10 @@ void diSetup() {
     GetRecipeInfoUseCase(recipeRepository: getIt()),
   );
   getIt.registerSingleton<ThrowWhenSettingsInfoUseCase>(
-    ThrowWhenSettingsInfoUseCase(
-      settingsRepository: getIt(),
-    ),
+    ThrowWhenSettingsInfoUseCase(settingsRepository: getIt()),
+  );
+  getIt.registerSingleton<UpdateRecipeUseCase>(
+    UpdateRecipeUseCase(recipeRepository: getIt()),
   );
 
   getIt.registerSingleton<GetRecentRecipesUseCase>(
@@ -85,9 +84,7 @@ void diSetup() {
   );
 
   getIt.registerFactory<SplashViewModel>(
-    () => SplashViewModel(
-      throwWhenSettingsInfoUseCase: getIt(),
-    ),
+    () => SplashViewModel(throwWhenSettingsInfoUseCase: getIt()),
   );
 
   getIt.registerFactory<SavedRecipesViewModel>(
@@ -111,6 +108,7 @@ void diSetup() {
       state: IngredientState(id: id),
       getRecipeInfoUseCase: getIt(),
       toggleFavoriteUseCase: getIt(),
+      updateRecipeUseCase: getIt(),
     ),
   );
 }

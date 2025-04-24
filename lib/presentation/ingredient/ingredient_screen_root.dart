@@ -39,7 +39,7 @@ class _IngredientScreenRootState extends State<IngredientScreenRoot> {
                   context: context,
                   builder: (BuildContext context) {
                     return FRatingDialog(onRatingSelected: (rating) {
-                      print(rating);
+                      viewModel.rateRecipeInfo(rating);
                     });
                   },
                 );
